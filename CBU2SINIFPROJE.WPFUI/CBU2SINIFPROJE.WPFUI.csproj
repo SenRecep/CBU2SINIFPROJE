@@ -6,4 +6,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CBU2SINIFPROJE.BLL\CBU2SINIFPROJE.BLL.csproj" />
+  </ItemGroup>
+
 </Project>

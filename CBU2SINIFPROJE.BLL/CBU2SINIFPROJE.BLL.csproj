@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CBU2SINIFPROJE.DAL\CBU2SINIFPROJE.DAL.csproj" />
+    <ProjectReference Include="..\CBU2SINIFPROJE.DTO\CBU2SINIFPROJE.DTO.csproj" />
+  </ItemGroup>
+
+</Project>
