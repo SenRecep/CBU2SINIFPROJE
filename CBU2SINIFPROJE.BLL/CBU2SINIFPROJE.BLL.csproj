@@ -9,4 +9,11 @@
     <ProjectReference Include="..\CBU2SINIFPROJE.DTO\CBU2SINIFPROJE.DTO.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Concrete\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="StringInfo\" />
+  </ItemGroup>
+
 </Project>

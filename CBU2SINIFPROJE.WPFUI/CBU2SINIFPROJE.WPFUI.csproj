@@ -10,4 +10,14 @@
     <ProjectReference Include="..\CBU2SINIFPROJE.BLL\CBU2SINIFPROJE.BLL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Attributes\" />
+    <Folder Include="Contents\Images\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="UserControls\" />
+    <Folder Include="Pages\" />
+    <Folder Include="Windows\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

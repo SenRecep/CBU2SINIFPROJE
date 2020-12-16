@@ -8,4 +8,9 @@
     <ProjectReference Include="..\CBU2SINIFPROJE.Entities\CBU2SINIFPROJE.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Concrete\" />
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
 </Project>
