@@ -1,1 +1,49 @@
-<mxfile host="app.diagrams.net" modified="2020-12-16T18:19:27.767Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 OPR/72.0.3815.400" version="14.0.4" etag="stGgEVsuBf8q1ZWndwmh" type="github"><diagram id="xbbga_fdnvIlSe0vcfPg">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2020-12-16T18:35:58.632Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 OPR/72.0.3815.400" etag="vPFsHY1hrh3HJvRBJyMA" version="14.0.4" type="github">
+  <diagram id="xbbga_fdnvIlSe0vcfPg" name="Page-1">
+    <mxGraphModel dx="1021" dy="580" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="u7wFDsyKz5LBSJD_JYyU-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="u7wFDsyKz5LBSJD_JYyU-1" target="u7wFDsyKz5LBSJD_JYyU-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u7wFDsyKz5LBSJD_JYyU-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="u7wFDsyKz5LBSJD_JYyU-1" target="u7wFDsyKz5LBSJD_JYyU-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u7wFDsyKz5LBSJD_JYyU-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="u7wFDsyKz5LBSJD_JYyU-1" target="u7wFDsyKz5LBSJD_JYyU-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u7wFDsyKz5LBSJD_JYyU-1" value="Çalışan&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;+Ad Soyad&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;+Maaş&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;+MaaşDeğiştir()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="150" y="50" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="u7wFDsyKz5LBSJD_JYyU-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="u7wFDsyKz5LBSJD_JYyU-3" target="u7wFDsyKz5LBSJD_JYyU-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u7wFDsyKz5LBSJD_JYyU-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="u7wFDsyKz5LBSJD_JYyU-3" target="u7wFDsyKz5LBSJD_JYyU-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u7wFDsyKz5LBSJD_JYyU-3" value="Yönetici&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;+Rol&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="50" width="130" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="u7wFDsyKz5LBSJD_JYyU-4" value="Müdür" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="515" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="u7wFDsyKz5LBSJD_JYyU-6" value="Müdür Yardımcısı" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="u7wFDsyKz5LBSJD_JYyU-11" value="Teknik İşçi&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;+Proje&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="210" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="u7wFDsyKz5LBSJD_JYyU-14" value="Oyuncu&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;+Proje&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;+Uzmanlık Alanı&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="u7wFDsyKz5LBSJD_JYyU-16" value="Firma&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;+Ad&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;+Adres&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;+Projeler&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="350" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="u7wFDsyKz5LBSJD_JYyU-17" value="Proje&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;+Proje Adı&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;+Oyuncular&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;+Firma&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;+Fiyat&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;+Tarih Aralığı&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="350" width="180" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
