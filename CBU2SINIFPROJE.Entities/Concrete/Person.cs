@@ -1,8 +1,9 @@
-﻿using CBU2SINIFPROJE.Entities.Interfaces;
+﻿using CBU2SINIFPROJE.Core.Entities.Concrete;
+using CBU2SINIFPROJE.Entities.Interfaces;
 
 namespace CBU2SINIFPROJE.Entities.Concrete
 {
-    public class Person :IPerson
+    public class Person :EntityBase, IPerson
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

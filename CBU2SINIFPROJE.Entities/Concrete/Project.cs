@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 
+using CBU2SINIFPROJE.Core.Entities.Concrete;
 using CBU2SINIFPROJE.Entities.Interfaces;
 
 namespace CBU2SINIFPROJE.Entities.Concrete
 {
-    public class Project : IProject
+    public class Project :EntityBase, IProject
     {
         public string Name { get; set; }
         public decimal Cost { get; set; }
