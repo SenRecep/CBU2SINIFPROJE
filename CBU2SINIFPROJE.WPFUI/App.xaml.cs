@@ -13,5 +13,9 @@ namespace CBU2SINIFPROJE.WPFUI
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+
+        }
     }
 }
