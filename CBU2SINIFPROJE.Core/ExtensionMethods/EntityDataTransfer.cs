@@ -14,7 +14,7 @@ namespace CBU2SINIFPROJE.Core.ExtensionMethods
             PropertyInfo[] leftProperties = left.GetType().GetProperties();
             rightProperties.ToList().ForEach((r) =>
             {
-                if (!r.Name.Equals(nameof(EntityBase.Id)))
+                if (!r.Name.Equals(nameof(IEntityBase.Id)))
                 {
                     PropertyInfo l = leftProperties.FirstOrDefault(x => x.Name.Equals(r.Name));
                     if (l != null)

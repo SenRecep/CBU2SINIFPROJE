@@ -17,7 +17,9 @@ namespace CBU2SINIFPROJE.DAL.Concrete.MemoryDatabase.Repositories
         }
         public void Add(TEntity entity)
         {
-            var maxId = data.Max(x=>x.Id);
+            int maxId = 0;
+            if (data.Any())
+                maxId = data.Max(x => x.Id);
             entity.Id = maxId + 1;
             data.Add(entity);
         }

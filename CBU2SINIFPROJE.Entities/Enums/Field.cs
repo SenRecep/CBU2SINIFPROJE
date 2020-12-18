@@ -2,7 +2,7 @@
 {
     public enum Field
     {
-        Sinama,
+        Sinema,
         GorselReklamlar,
         Radyo
     }
