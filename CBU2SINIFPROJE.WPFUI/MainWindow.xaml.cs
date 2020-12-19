@@ -29,13 +29,13 @@ namespace CBU2SINIFPROJE.WPFUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly IActorService actorService;
+        private readonly IGenericService<Manager> managerService;
 
-        public MainWindow(IActorService actorService)
+        public MainWindow(IGenericService<Manager> managerService)
         {
             InitializeComponent();
             InitEvents();
-            this.actorService = actorService;
+            this.managerService = managerService;
         }
         public void InitEvents()
         {
@@ -44,6 +44,7 @@ namespace CBU2SINIFPROJE.WPFUI
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            var managers= managerService.GetAll();
         }
     }
 }

@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CBU2SINIFPROJE.DAL\CBU2SINIFPROJE.DAL.csproj" />
-    <ProjectReference Include="..\CBU2SINIFPROJE.DTO\CBU2SINIFPROJE.DTO.csproj" />
+    <ProjectReference Include="..\CBU2SINIFPROJE.ViewModels\CBU2SINIFPROJE.ViewModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>

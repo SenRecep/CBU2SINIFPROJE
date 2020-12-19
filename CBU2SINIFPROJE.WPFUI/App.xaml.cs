@@ -34,6 +34,8 @@ namespace CBU2SINIFPROJE.WPFUI
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            SeedDatabase seedDatabase= ServiceProvider.GetRequiredService<SeedDatabase>();
+            seedDatabase.Seed();
             MainWindow mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
         }
@@ -41,6 +43,7 @@ namespace CBU2SINIFPROJE.WPFUI
         private void ConfigureServices(IServiceCollection services)
         {
             services.AddDependencies(Configuration);
+            services.AddScoped<SeedDatabase>();
             services.AddTransient(typeof(MainWindow));
         }
 

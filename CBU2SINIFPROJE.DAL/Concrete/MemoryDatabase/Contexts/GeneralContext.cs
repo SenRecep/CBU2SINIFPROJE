@@ -16,11 +16,13 @@ namespace CBU2SINIFPROJE.DAL.Concrete.MemoryDatabase.Contexts
             OfficeWorkers = new();
             Companies = new();
             Managers = new();
+            Credentials = new();
         }
         public static List<OfficeWorker> OfficeWorkers { get; set; }
         public static List<Actor> Actors { get; set; }
         public static List<Company> Companies { get; set; }
         public static List<Manager> Managers { get; set; }
+        public static List<Credential> Credentials { get; set; }
         public static List<T> Set<T>()
             where T : class, IEntityBase, new()
         {
@@ -33,6 +35,8 @@ namespace CBU2SINIFPROJE.DAL.Concrete.MemoryDatabase.Contexts
                 return (List<T>)Companies.Cast<T>();
             if (type == typeof(Manager))
                 return (List<T>)Managers.Cast<T>();
+            if (type == typeof(Credential))
+                return (List<T>)Credentials.Cast<T>();
             return null;
         }
 
