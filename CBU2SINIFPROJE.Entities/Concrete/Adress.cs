@@ -3,6 +3,10 @@ namespace CBU2SINIFPROJE.Entities.Concrete
 {
     public class Adress : IAdress
     {
+        public Adress()
+        {
+
+        }
         public Adress(string city,string town,string detail)
         {
             City = city;

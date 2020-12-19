@@ -6,7 +6,7 @@ namespace CBU2SINIFPROJE.Entities.Interfaces
 {
     public interface IEmployee
     {
-        decimal Salary { get; set; }
+        int Salary { get; set; }
         List<Vacation> Vacations { get; set; }
     }
 }
