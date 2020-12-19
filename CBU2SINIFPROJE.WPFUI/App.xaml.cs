@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
-using CBU2SINIFPROJE.BLL.Concrete;
-using CBU2SINIFPROJE.BLL.Interfaces;
-using CBU2SINIFPROJE.DAL.Concrete.MemoryDatabase.Repositories;
-using CBU2SINIFPROJE.DAL.Interfaces;
+using CBU2SINIFPROJE.BLL.Containers.MicrosoftIOC;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,13 +20,13 @@ namespace CBU2SINIFPROJE.WPFUI
 
         public App()
         {
-            var builder = new ConfigurationBuilder()
+            IConfigurationBuilder builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
             Configuration = builder.Build();
 
-            var serviceCollection = new ServiceCollection();
+            ServiceCollection serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
@@ -42,27 +34,13 @@ namespace CBU2SINIFPROJE.WPFUI
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
+            MainWindow mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
         }
 
         private void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(Configuration);
-
-            services.AddScoped(typeof(IGenericService<>) , typeof(GenericManager<>));
-            services.AddScoped(typeof(IGenericRepository<>) , typeof(MDGenericRepository<>));
-
-            services.AddScoped<IActorService, ActorManager>();
-            services.AddScoped<IManagerService, ManagerManager>();
-            services.AddScoped<IOfficeWorkerService, OfficeWorkerManager>();
-            services.AddScoped<ICompanyService, CompanyManager>();
-
-            services.AddScoped<IActorDal,MDActorDal>();
-            services.AddScoped<IManagerDal,MDManagerDal>();
-            services.AddScoped<IOfficeWorkerDal,MDOfficeWorkerDal>();
-            services.AddScoped<ICompanyDal,MDCompanyDal>();
-
+            services.AddDependencies(Configuration);
             services.AddTransient(typeof(MainWindow));
         }
 
