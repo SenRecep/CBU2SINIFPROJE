@@ -19,6 +19,9 @@ using CBU2SINIFPROJE.DAL.Concrete.MemoryDatabase.Repositories;
 using CBU2SINIFPROJE.Entities.Concrete;
 using CBU2SINIFPROJE.Entities.Enums;
 
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+
 namespace CBU2SINIFPROJE.WPFUI
 {
     /// <summary>
@@ -26,10 +29,13 @@ namespace CBU2SINIFPROJE.WPFUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly IActorService actorService;
+
+        public MainWindow(IActorService actorService)
         {
             InitializeComponent();
             InitEvents();
+            this.actorService = actorService;
         }
         public void InitEvents()
         {
@@ -38,8 +44,6 @@ namespace CBU2SINIFPROJE.WPFUI
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //Kotu kullanim di implemantasyonu yapilmasi gerekli
-            IActorService actorService = new ActorManager(new MDActorDal(),new MDGenericRepository<Actor>());
         }
     }
 }
