@@ -29,6 +29,13 @@ namespace CBU2SINIFPROJE.DAL.Concrete.MemoryDatabase.Repositories
             data.Remove(entity);
         }
 
+        public void Delete(int id)
+        {
+            var found = data.FirstOrDefault(x=>x.Id==id);
+            if (found!=null)
+                data.Remove(found);
+        }
+
         public List<TEntity> GetAll()
         {
             return data;

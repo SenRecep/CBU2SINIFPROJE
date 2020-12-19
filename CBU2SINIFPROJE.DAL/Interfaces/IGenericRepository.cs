@@ -11,5 +11,6 @@ namespace CBU2SINIFPROJE.DAL.Interfaces
         void Add(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);
+        void Delete(int id);
     }
 }
