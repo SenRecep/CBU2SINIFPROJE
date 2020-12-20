@@ -38,10 +38,24 @@ namespace CBU2SINIFPROJE.WPFUI
         public void InitEvents()
         {
             this.Loaded += MainWindow_Loaded;
+            Btn_Logout.Click += (s, e) => Environment.Exit(1); 
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            foreach (var item in navigatorButtons.Children)
+                if (item is Button navigatorButton)
+                    navigatorButton.Click += NavigatorButton_Click;
+        }
+
+        private void NavigatorButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button navigatorButton)
+            {
+                var pagename = navigatorButton.Tag.ToString();
+                Title = pagename;
+                pageView.Source = new Uri($"/Pages/{pagename}.xaml", UriKind.RelativeOrAbsolute);
+            }
         }
     }
 }
