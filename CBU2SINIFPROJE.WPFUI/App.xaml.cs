@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 
 using CBU2SINIFPROJE.BLL.Containers.MicrosoftIOC;
+using CBU2SINIFPROJE.WPFUI.Windows;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,14 +37,15 @@ namespace CBU2SINIFPROJE.WPFUI
         {
             SeedDatabase seedDatabase= ServiceProvider.GetRequiredService<SeedDatabase>();
             seedDatabase.Seed();
-            MainWindow mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-            mainWindow.Show();
+            Window window = ServiceProvider.GetRequiredService<LoginWindow>();
+            window.Show();
         }
 
         private void ConfigureServices(IServiceCollection services)
         {
             services.AddDependencies(Configuration);
             services.AddScoped<SeedDatabase>();
+            services.AddTransient(typeof(LoginWindow));
             services.AddTransient(typeof(MainWindow));
         }
 

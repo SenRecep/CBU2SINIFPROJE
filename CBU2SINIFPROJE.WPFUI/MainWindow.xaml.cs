@@ -29,13 +29,11 @@ namespace CBU2SINIFPROJE.WPFUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly IGenericService<Project> projectService;
 
-        public MainWindow(IGenericService<Project> projectService)
+        public MainWindow()
         {
             InitializeComponent();
             InitEvents();
-            this.projectService = projectService;
         }
         public void InitEvents()
         {
@@ -44,7 +42,6 @@ namespace CBU2SINIFPROJE.WPFUI
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var projects = projectService.GetAll();
         }
     }
 }
