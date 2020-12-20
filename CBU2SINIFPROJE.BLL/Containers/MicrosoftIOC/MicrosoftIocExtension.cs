@@ -28,7 +28,6 @@ namespace CBU2SINIFPROJE.BLL.Containers.MicrosoftIOC
             services.AddScoped<IManagerDal, MDManagerDal>();
             services.AddScoped<IOfficeWorkerDal, MDOfficeWorkerDal>();
             services.AddScoped<ICompanyDal, MDCompanyDal>();
-            services.AddScoped<IProjectDal, MDProjectDal>();
 
         }
     }

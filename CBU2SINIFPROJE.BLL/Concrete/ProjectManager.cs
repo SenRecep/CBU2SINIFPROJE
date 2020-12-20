@@ -12,9 +12,9 @@ namespace CBU2SINIFPROJE.BLL.Concrete
 {
     public class ProjectManager : IProjectService
     {
-        private readonly IProjectDal projectDal;
+        private readonly IGenericRepository<Project> projectDal;
 
-        public ProjectManager(IProjectDal projectDal)
+        public ProjectManager(IGenericRepository<Project> projectDal)
         {
             this.projectDal = projectDal;
         }
@@ -24,13 +24,17 @@ namespace CBU2SINIFPROJE.BLL.Concrete
             projectDal.Add(project);
             officeWorkers.ToList().ForEach(item =>
             {
-                item.Projects = new List<Project>();
-                item.Projects.Add(project);
+                item.Projects = new List<Project>
+                {
+                    project
+                };
             });
             actors.ToList().ForEach(item =>
             {
-                item.Projects = new List<Project>();
-                item.Projects.Add(project);
+                item.Projects = new List<Project>
+                {
+                    project
+                };
             });
             project.Employees.AddRange(officeWorkers);
             project.Employees.AddRange(actors);

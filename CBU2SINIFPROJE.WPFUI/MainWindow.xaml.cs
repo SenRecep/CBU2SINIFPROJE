@@ -29,21 +29,13 @@ namespace CBU2SINIFPROJE.WPFUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly IGenericService<Actor> actorService;
-        private readonly IGenericService<OfficeWorker> workerService;
-        private readonly IGenericService<Company> companyService;
+        private readonly IGenericService<Project> projectService;
 
-        public MainWindow(
-            IGenericService<Actor> actorService,
-            IGenericService<OfficeWorker> workerService,
-            IGenericService<Company> companyService
-            )
+        public MainWindow(IGenericService<Project> projectService)
         {
             InitializeComponent();
             InitEvents();
-            this.actorService = actorService;
-            this.workerService = workerService;
-            this.companyService = companyService;
+            this.projectService = projectService;
         }
         public void InitEvents()
         {
@@ -52,9 +44,7 @@ namespace CBU2SINIFPROJE.WPFUI
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var actors = actorService.GetAll();
-            var workers = workerService.GetAll();
-            var companies = companyService.GetAll();
+            var projects = projectService.GetAll();
         }
     }
 }
