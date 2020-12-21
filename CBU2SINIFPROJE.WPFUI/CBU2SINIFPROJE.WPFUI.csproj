@@ -23,7 +23,6 @@
   <ItemGroup>
     <Folder Include="Attributes\" />
     <Folder Include="Contents\Images\" />
-    <Folder Include="Helpers\" />
     <Folder Include="UserControls\" />
     <Folder Include="Services\" />
   </ItemGroup>

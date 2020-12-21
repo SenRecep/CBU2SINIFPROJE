@@ -4,13 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CBU2SINIFPROJE.WPFUI.Windows"
+        xmlns:helpers="clr-namespace:CBU2SINIFPROJE.WPFUI.Helpers"
+        xmlns:models="clr-namespace:CBU2SINIFPROJE.ViewModels.Login;assembly=CBU2SINIFPROJE.ViewModels"
         mc:Ignorable="d"
         Title="LoginWindow" Height="300" Width="300" WindowStartupLocation="CenterScreen" FontSize="18">
+    <Window.DataContext>
+        <models:LoginViewModel/>
+    </Window.DataContext>
     <StackPanel  VerticalAlignment="Center" Margin="50">
         <TextBlock Text="Kullanıcı Adı:"/>
-        <TextBox x:Name="tb_userName"/>
+        <TextBox x:Name="tb_userName" Text="{Binding UserName,Mode=TwoWay}"/>
         <TextBlock Text="Parola:" Margin="0,5,0,0"/>
-        <PasswordBox x:Name="pb_password"/>
+        <PasswordBox x:Name="pb_password"  helpers:PasswordHelper.Attach="True"
+    helpers:PasswordHelper.Password="{Binding Path=Password,Mode=TwoWay}"/>
         <Button x:Name="btn_submit" Content="Giriş Yap" Margin="0,15,0,0" />
     </StackPanel>
 </Window>
