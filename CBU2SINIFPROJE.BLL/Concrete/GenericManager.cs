@@ -37,5 +37,10 @@ namespace CBU2SINIFPROJE.BLL.Concrete
         {
             return repository.GetAll();
         }
+
+        public TEntity GetById(int id)
+        {
+            return repository.GetById(id);
+        }
     }
 }

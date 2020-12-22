@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="LoginWindow" Height="300" Width="300" WindowStartupLocation="CenterScreen" FontSize="18">
     <Window.DataContext>
-        <models:LoginViewModel/>
+        <models:LoginViewModel UserName="fazlikilic" Password="admin"/>
     </Window.DataContext>
     <StackPanel  VerticalAlignment="Center" Margin="50">
         <TextBlock Text="Kullanıcı Adı:"/>

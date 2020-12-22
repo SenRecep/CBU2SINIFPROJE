@@ -46,6 +46,12 @@ namespace CBU2SINIFPROJE.WPFUI
             services.AddScoped<SeedDatabase>();
             services.AddTransient(typeof(LoginWindow));
             services.AddTransient(typeof(MainWindow));
+            services.AddTransient(typeof(ActorWindow));
+            services.AddTransient(typeof(Pages.OyuncuIslemleri));
+            services.AddTransient(typeof(Pages.FirmaIslemleri));
+            services.AddTransient(typeof(Pages.MuhasebeIslemleri));
+            services.AddTransient(typeof(Pages.PersonelIslemleri));
+            services.AddTransient(typeof(Pages.ProjeIslemleri));
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)

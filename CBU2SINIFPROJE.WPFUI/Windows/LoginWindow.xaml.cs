@@ -34,12 +34,7 @@ namespace CBU2SINIFPROJE.WPFUI.Windows
         {
             var model = DataContext.Cast<LoginViewModel>();
             var result = authService.Login(model);
-            if (result.State==LoginState.Error)
-            {
-                MessageBox.Show(result.ErrorMessage,"Uyarı",MessageBoxButton.OK,MessageBoxImage.Warning);
-                return;
-            }
-            if (result.State==LoginState.NotFound)
+            if (result.State!=LoginState.Success)
             {
                 MessageBox.Show(result.ErrorMessage, "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;

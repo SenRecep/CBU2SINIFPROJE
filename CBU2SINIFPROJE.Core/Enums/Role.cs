@@ -1,4 +1,4 @@
-﻿namespace CBU2SINIFPROJE.Entities.Enums
+﻿namespace CBU2SINIFPROJE.Core.Enums
 {
     public enum Role
     {

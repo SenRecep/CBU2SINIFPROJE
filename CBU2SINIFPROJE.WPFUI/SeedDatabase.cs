@@ -2,8 +2,8 @@
 using System.Linq;
 
 using CBU2SINIFPROJE.BLL.Interfaces;
+using CBU2SINIFPROJE.Core.Enums;
 using CBU2SINIFPROJE.Entities.Concrete;
-using CBU2SINIFPROJE.Entities.Enums;
 
 namespace CBU2SINIFPROJE.WPFUI
 {

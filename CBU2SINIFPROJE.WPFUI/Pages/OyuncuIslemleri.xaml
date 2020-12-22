@@ -9,6 +9,28 @@
       Title="OyuncuIslemleri">
 
     <Grid>
-        <Label Content="Oyuncu Islemleri"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Oyuncu Islemleri" HorizontalContentAlignment="Center" FontSize="18" />
+        <Button Grid.Row="1" x:Name="Btn_actorAdd" Content="+" Background="#1297e0" FontSize="18" Foreground="White" Margin="0,10"/>
+        <DataGrid Grid.Row="2" x:Name="dg_Actor" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ad" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Soyad" Binding="{Binding LastName}"/>
+                <DataGridTextColumn x:Name="dtc_field" Header="Uzmanlık" Binding="{Binding Field}"/> 
+                <DataGridTextColumn Header="Maaş" Binding="{Binding Salary}"/>
+                <DataGridTextColumn Header="Adres" Binding="{Binding Adress}"/>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Düzenle" x:Name="Edit_Actor"/>
+                    <MenuItem Header="İzin Ver" x:Name="Izin_Actor"/>
+                    <MenuItem Header="Sil" x:Name="Delete_Actor"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
     </Grid>
 </Page>

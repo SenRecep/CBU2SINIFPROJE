@@ -41,6 +41,11 @@ namespace CBU2SINIFPROJE.DAL.Concrete.MemoryDatabase.Repositories
             return data;
         }
 
+        public TEntity GetById(int id)
+        {
+            return data.FirstOrDefault(x => x.Id == id);
+        }
+
         public void Update(TEntity entity)
         {
             var found = data.FirstOrDefault(x=>x.Id==entity.Id);

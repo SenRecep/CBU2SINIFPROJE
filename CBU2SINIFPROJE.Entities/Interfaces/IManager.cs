@@ -1,5 +1,5 @@
-﻿using CBU2SINIFPROJE.Entities.Concrete;
-using CBU2SINIFPROJE.Entities.Enums;
+﻿using CBU2SINIFPROJE.Core.Enums;
+using CBU2SINIFPROJE.Entities.Concrete;
 
 namespace CBU2SINIFPROJE.Entities.Interfaces
 {

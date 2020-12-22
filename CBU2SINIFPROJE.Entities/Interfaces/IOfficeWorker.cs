@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
+using CBU2SINIFPROJE.Core.Enums;
 using CBU2SINIFPROJE.Entities.Concrete;
-using CBU2SINIFPROJE.Entities.Enums;
 
 namespace CBU2SINIFPROJE.Entities.Interfaces
 {
