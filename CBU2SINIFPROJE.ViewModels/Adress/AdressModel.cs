@@ -1,6 +1,8 @@
-﻿namespace CBU2SINIFPROJE.ViewModels.Adress
+﻿using CBU2SINIFPROJE.Core.ViewModels;
+
+namespace CBU2SINIFPROJE.ViewModels.Adress
 {
-    public class AdressModel
+    public class AdressModel:IViewModel
     {
         public AdressModel()
         {

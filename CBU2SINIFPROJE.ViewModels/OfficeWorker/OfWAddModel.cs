@@ -1,13 +1,17 @@
-﻿
-using CBU2SINIFPROJE.Core.Enums;
+﻿using CBU2SINIFPROJE.Core.Enums;
 using CBU2SINIFPROJE.Core.ViewModels;
 using CBU2SINIFPROJE.ViewModels.Adress;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CBU2SINIFPROJE.ViewModels.Actor
+namespace CBU2SINIFPROJE.ViewModels.OfficeWorker
 {
-    public class ActorAddModel:IViewModel
+    public class OfWAddModel:IViewModel
     {
-        public ActorAddModel()
+        public OfWAddModel()
         {
             Adress = new AdressModel();
         }
@@ -16,6 +20,6 @@ namespace CBU2SINIFPROJE.ViewModels.Actor
         public string LastName { get; set; }
         public int Salary { get; set; }
         public AdressModel Adress { get; set; }
-        public Field Field { get; set; }
+        public Position Position { get; set; }
     }
 }
