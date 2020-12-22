@@ -37,8 +37,7 @@ namespace CBU2SINIFPROJE.WPFUI
         {
             SeedDatabase seedDatabase= ServiceProvider.GetRequiredService<SeedDatabase>();
             seedDatabase.Seed();
-            Window window = ServiceProvider.GetRequiredService<LoginWindow>();
-            window.Show();
+            base.OnStartup(e);
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -49,5 +48,10 @@ namespace CBU2SINIFPROJE.WPFUI
             services.AddTransient(typeof(MainWindow));
         }
 
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            Window window = ServiceProvider.GetRequiredService<LoginWindow>();
+            window.Show();
+        }
     }
 }
