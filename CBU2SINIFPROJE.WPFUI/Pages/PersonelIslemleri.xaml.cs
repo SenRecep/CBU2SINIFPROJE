@@ -18,6 +18,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Extensions.DependencyInjection;
 using CBU2SINIFPROJE.ViewModels.OfficeWorker;
+using CBU2SINIFPROJE.BLL.Status;
+using CBU2SINIFPROJE.Core.Enums;
 
 namespace CBU2SINIFPROJE.WPFUI.Pages
 {
@@ -63,11 +65,13 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
         private void PersonelIslemleri_Loaded(object sender, RoutedEventArgs e)
         {
             dg_Employee.ItemsSource = genericOfwService.GetAll();
+            if (SessionContext.LoginManager.Role == Role.MudurYardimcisi)
+                    Edit_Employee.Visibility =Delete_Employee.Visibility = Visibility.Collapsed;
         }
 
         private void Izin_Employee_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void Delete_Employee_Click(object sender, RoutedEventArgs e)
