@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CBU2SINIFPROJE.BLL.Interfaces;
+using CBU2SINIFPROJE.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,18 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
     /// </summary>
     public partial class ProjeIslemleri : Page
     {
-        public ProjeIslemleri()
+        private readonly IGenericService<Project> projectService;
+
+        public ProjeIslemleri(IGenericService<Project>projectService)
         {
             InitializeComponent();
+            this.projectService = projectService;
+            this.Loaded += ProjeIslemleri_Loaded;
+        }
+
+        private void ProjeIslemleri_Loaded(object sender, RoutedEventArgs e)
+        {
+            dg_Project.ItemsSource = projectService.GetAll();
         }
     }
 }

@@ -105,5 +105,10 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
                 dtc_field.Visibility = Edit_Actor.Visibility = Delete_Actor.Visibility = Visibility.Collapsed;
             dg_Actor.ItemsSource = genericActorService.GetAll();
         }
+
+        private void dg_Actor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

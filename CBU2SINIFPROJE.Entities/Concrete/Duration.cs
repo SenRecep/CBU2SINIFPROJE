@@ -11,6 +11,10 @@ namespace CBU2SINIFPROJE.Entities.Concrete
             StartDate = start;
             EndDate = end;
         }
+        public override string ToString()
+        {
+            return $"{StartDate.ToShortDateString()}-{EndDate.ToShortDateString()}";
+        }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }
