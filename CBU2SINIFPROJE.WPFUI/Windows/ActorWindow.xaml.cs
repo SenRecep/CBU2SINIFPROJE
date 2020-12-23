@@ -41,7 +41,7 @@ namespace CBU2SINIFPROJE.WPFUI.Windows
             var model = this.DataContext.Cast<ActorAddModel>();
             if (!model.IsNull())
             {
-                model.Field = int.Parse(cb_Fields.SelectedItem.Cast<ComboBoxItem>().Tag.Cast<string>()).Cast<Field>();
+                model.Field = cb_Fields.SelectedItem.Cast<ComboBoxItem>().Tag.Cast<string>().ToInt().Cast<Field>();
                 Actor entity = new()
                 {
                     Id=model.Id,

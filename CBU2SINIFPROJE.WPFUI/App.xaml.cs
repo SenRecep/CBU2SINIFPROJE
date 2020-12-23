@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 
 using CBU2SINIFPROJE.BLL.Containers.MicrosoftIOC;
+using CBU2SINIFPROJE.WPFUI.Containers.MicrosoftIOC;
 using CBU2SINIFPROJE.WPFUI.Windows;
 
 using Microsoft.Extensions.Configuration;
@@ -35,7 +36,7 @@ namespace CBU2SINIFPROJE.WPFUI
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            SeedDatabase seedDatabase= ServiceProvider.GetRequiredService<SeedDatabase>();
+            SeedDatabase seedDatabase = ServiceProvider.GetRequiredService<SeedDatabase>();
             seedDatabase.Seed();
             base.OnStartup(e);
         }
@@ -44,15 +45,8 @@ namespace CBU2SINIFPROJE.WPFUI
         {
             services.AddDependencies(Configuration);
             services.AddScoped<SeedDatabase>();
-            services.AddTransient(typeof(LoginWindow));
-            services.AddTransient(typeof(MainWindow));
-            services.AddTransient(typeof(OfWWindow));
-            services.AddTransient(typeof(ActorWindow));
-            services.AddTransient(typeof(Pages.OyuncuIslemleri));
-            services.AddTransient(typeof(Pages.FirmaIslemleri));
-            services.AddTransient(typeof(Pages.MuhasebeIslemleri));
-            services.AddTransient(typeof(Pages.PersonelIslemleri));
-            services.AddTransient(typeof(Pages.ProjeIslemleri));
+            services.WindowsDILoader();
+            services.PagesDILoader();
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)

@@ -26,7 +26,8 @@ namespace CBU2SINIFPROJE.DAL.Concrete.MemoryDatabase.Repositories
 
         public void Delete(TEntity entity)
         {
-            data.Remove(entity);
+            if (!data.Remove(entity))
+                Delete(entity.Id);
         }
 
         public void Delete(int id)

@@ -6,11 +6,13 @@
         xmlns:local="clr-namespace:CBU2SINIFPROJE.WPFUI.Windows"
         xmlns:models="clr-namespace:CBU2SINIFPROJE.ViewModels.Actor;assembly=CBU2SINIFPROJE.ViewModels"
         mc:Ignorable="d"
-        Title="ActorWindow" Height="532" Width="800">
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
+        Title="ActorWindow" Height="525" MinWidth="400">
     <Window.DataContext>
         <models:ActorAddModel/>
     </Window.DataContext>
-    <StackPanel Margin="50">
+    <StackPanel Margin="50" VerticalAlignment="Center">
         <Label Content="Ad:"/>
         <TextBox Text="{Binding FirstName}"/>
         <Label Content="Soyad:"/>

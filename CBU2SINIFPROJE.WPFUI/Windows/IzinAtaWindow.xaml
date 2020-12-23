@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CBU2SINIFPROJE.WPFUI.Windows"
         mc:Ignorable="d"
         Title="IzinAtaWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+      
+    </StackPanel>
 </Window>
