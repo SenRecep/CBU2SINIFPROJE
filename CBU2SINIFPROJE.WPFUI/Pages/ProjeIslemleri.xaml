@@ -19,13 +19,15 @@
         <DataGrid Grid.Row="2" x:Name="dg_Project" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Ad" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Soyad" Binding="{Binding Cost}"/>
+                <DataGridTextColumn Header="Fiyat" Binding="{Binding Cost, StringFormat=#0.00}"/>
                 <DataGridTextColumn Header="Şirket" Binding="{Binding Company.Name}"/>
                 <DataGridTextColumn Header="Çalışma Aralığı" Binding="{Binding Duration}"/>
+                <DataGridTextColumn Header="Çalışan Sayısı" Binding="{Binding Employees.Count}"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Düzenle" x:Name="Edit_Actor"/>
+                    <MenuItem Header="Çalışanlar" x:Name="ListCalisanlar"/>
                     <MenuItem Header="İzin Ver" x:Name="Izin_Actor"/>
                     <MenuItem Header="Sil" x:Name="Delete_Actor"/>
                 </ContextMenu>

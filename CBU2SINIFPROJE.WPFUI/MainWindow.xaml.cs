@@ -4,7 +4,10 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
+using CBU2SINIFPROJE.BLL.ExtensionMethods;
+using CBU2SINIFPROJE.BLL.Status;
 using CBU2SINIFPROJE.WPFUI.Pages;
+using CBU2SINIFPROJE.WPFUI.Windows;
 
 using Microsoft.Extensions.DependencyInjection;
 namespace CBU2SINIFPROJE.WPFUI
@@ -14,6 +17,7 @@ namespace CBU2SINIFPROJE.WPFUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool IsLogout { get; set; }
         private readonly IServiceProvider serviceProvider;
 
         public MainWindow(IServiceProvider serviceProvider)
@@ -25,11 +29,22 @@ namespace CBU2SINIFPROJE.WPFUI
         public void InitEvents()
         {
             Loaded += MainWindow_Loaded;
-            Btn_Logout.Click += (s, e) => Environment.Exit(1);
+            Btn_Logout.Click += Btn_Logout_Click;
         }
+
+        private void Btn_Logout_Click(object sender, RoutedEventArgs e)
+        {
+            SessionContext.LoginManager = null;
+            Window window = serviceProvider.GetService<LoginWindow>();
+            IsLogout = true;
+            window.ShowDialog();
+            this.Close();
+        }
+
         protected override void OnClosing(CancelEventArgs e)
         {
-            Application.Current.Shutdown();
+            if (!IsLogout)
+                Application.Current.Shutdown();
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {

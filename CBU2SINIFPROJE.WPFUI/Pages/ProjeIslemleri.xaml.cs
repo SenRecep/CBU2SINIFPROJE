@@ -1,5 +1,8 @@
-﻿using CBU2SINIFPROJE.BLL.Interfaces;
+﻿using CBU2SINIFPROJE.BLL.ExtensionMethods;
+using CBU2SINIFPROJE.BLL.Interfaces;
 using CBU2SINIFPROJE.Entities.Concrete;
+using CBU2SINIFPROJE.WPFUI.Windows;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +31,23 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
         {
             InitializeComponent();
             this.projectService = projectService;
+            InitEvents();
+        }
+
+        private void InitEvents()
+        {
             this.Loaded += ProjeIslemleri_Loaded;
+            ListCalisanlar.Click += ListCaslisanlar_Click;
+        }
+
+        private void ListCaslisanlar_Click(object sender, RoutedEventArgs e)
+        {
+            var model = dg_Project.SelectedItem.Cast<Project>();
+            if (!model.IsNull())
+            {
+                Window employees = new ListEmployeeWindow(model);
+                employees.ShowDialog();
+            }
         }
 
         private void ProjeIslemleri_Loaded(object sender, RoutedEventArgs e)

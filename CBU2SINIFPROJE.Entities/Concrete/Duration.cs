@@ -13,7 +13,7 @@ namespace CBU2SINIFPROJE.Entities.Concrete
         }
         public override string ToString()
         {
-            return $"{StartDate.ToShortDateString()}-{EndDate.ToShortDateString()}";
+            return $"{StartDate.ToShortDateString()} - {EndDate.ToShortDateString()}";
         }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

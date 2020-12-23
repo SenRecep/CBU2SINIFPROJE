@@ -52,8 +52,8 @@ namespace CBU2SINIFPROJE.WPFUI
                 var projectCount = faker.Random.Byte(1, 2);
                 for (int i = 0; i < projectCount; i++)
                 {
-                    List<OfficeWorker> _officeworkers = officeworker.Where(x => x.Projects == null).OrderBy(x => faker.Random.Int(0, officeworker.Count * 2)).Take(faker.Random.Int(1,3)).ToList();
-                    List<Actor> _actors = actors.Where(x => x.Projects == null).OrderBy(x => faker.Random.Int(0, actors.Count * 2)).Take(faker.Random.Int(1, 3)).ToList();
+                    List<OfficeWorker> _officeworkers = officeworker.Where(x => x.Projects == null).OrderBy(x => faker.Random.Int(0, officeworker.Count * 2)).Take(faker.Random.Int(1,2)).ToList();
+                    List<Actor> _actors = actors.Where(x => x.Projects == null).OrderBy(x => faker.Random.Int(0, actors.Count * 2)).Take(faker.Random.Int(1, 2)).ToList();
                     var totalEmployee = _officeworkers.Count() + _actors.Count();
                     var duration = new Duration(faker.Date.Recent(faker.Random.Byte(3,10)), faker.Date.Soon(faker.Random.Byte(3, 10)));
                     
