@@ -29,7 +29,6 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
     public partial class PersonelIslemleri : Page
     {
         private readonly IGenericService<OfficeWorker> genericOfwService;
-        private readonly IOfficeWorkerService ofwService;
         private readonly IServiceProvider serviceProvider;
 
         public PersonelIslemleri(IGenericService<OfficeWorker> genericOfwService,IServiceProvider serviceProvider)
@@ -71,7 +70,12 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
 
         private void Izin_Employee_Click(object sender, RoutedEventArgs e)
         {
-            
+            Employee selected = dg_Employee.SelectedItem?.Cast<Employee>();
+            if (!selected.IsNull())
+            {
+                var window = new IzinAtaWindow(selected);
+                window.ShowDialog();
+            }
         }
 
         private void Delete_Employee_Click(object sender, RoutedEventArgs e)

@@ -17,7 +17,7 @@ namespace CBU2SINIFPROJE.WPFUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public bool IsLogout { get; set; }
+        private bool isLogout;
         private readonly IServiceProvider serviceProvider;
 
         public MainWindow(IServiceProvider serviceProvider)
@@ -36,15 +36,16 @@ namespace CBU2SINIFPROJE.WPFUI
         {
             SessionContext.LoginManager = null;
             Window window = serviceProvider.GetService<LoginWindow>();
-            IsLogout = true;
+            isLogout = true;
             window.ShowDialog();
             this.Close();
         }
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            if (!IsLogout)
+            if (!isLogout)
                 Application.Current.Shutdown();
+            isLogout = !isLogout;
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {

@@ -47,6 +47,12 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
 
         private void Izin_Actor_Click(object sender, RoutedEventArgs e)
         {
+            Actor selectedActor = dg_Actor.SelectedItem?.Cast<Actor>();
+            if (!selectedActor.IsNull())
+            {
+                var window = new IzinAtaWindow(selectedActor);
+                window.ShowDialog();
+            }
         }
 
         private void Btn_actorAdd_Click(object sender, RoutedEventArgs e)

@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CBU2SINIFPROJE.WPFUI.Windows"
         mc:Ignorable="d"
-        Title="IzinAtaWindow" Height="450" Width="800">
-    <StackPanel>
-      
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
+        Title="IzinAtaWindow" Height="400" MinWidth="400">
+    <Window.Resources>
+        <Style TargetType="DataGrid">
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel Margin="50">
+        <Label Content="Başlangıç Tarihi"/>
+        <DatePicker x:Name="dp_baslangic"/>
+        <Label Content="Bitiş Tarihi"/>
+        <DatePicker x:Name="dp_bitis"/>
+        <Button x:Name="btn_submit" Content="KAYDET" Style="{StaticResource navigatorButton}" Margin="0,10"/>
+        <DataGrid x:Name="dg_izinler">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Yönetici" Binding="{Binding Manager.FullName}"/>
+                <DataGridTextColumn Header="Başlangıç Tarihi" Binding="{Binding Duration.StartDate,StringFormat=d}"/>
+                <DataGridTextColumn Header="Bitiş Tarihi" Binding="{Binding Duration.EndDate,StringFormat=d}"/>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="İptal" x:Name="IzinIptal"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
     </StackPanel>
 </Window>
