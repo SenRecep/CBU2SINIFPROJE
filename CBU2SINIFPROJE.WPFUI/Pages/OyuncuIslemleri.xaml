@@ -23,6 +23,7 @@
                 <DataGridTextColumn x:Name="dtc_field" Header="Uzmanlık" Binding="{Binding Field}"/> 
                 <DataGridTextColumn Header="Maaş" Binding="{Binding Salary}"/>
                 <DataGridTextColumn Header="Adres" Binding="{Binding Adress}"/>
+                <DataGridTextColumn Header="Durum" Binding="{Binding State}"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>

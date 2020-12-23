@@ -73,7 +73,8 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
             Employee selected = dg_Employee.SelectedItem?.Cast<Employee>();
             if (!selected.IsNull())
             {
-                var window = new IzinAtaWindow(selected);
+                var window = serviceProvider.GetService<IzinAtaWindow>();
+                window.Init(selected);
                 window.ShowDialog();
             }
         }

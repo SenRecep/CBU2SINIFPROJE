@@ -50,8 +50,10 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
             Actor selectedActor = dg_Actor.SelectedItem?.Cast<Actor>();
             if (!selectedActor.IsNull())
             {
-                var window = new IzinAtaWindow(selectedActor);
+                var window = serviceProvider.GetService<IzinAtaWindow>();
+                window.Init(selectedActor);
                 window.ShowDialog();
+                this.NavigationService.Refresh();
             }
         }
 
@@ -109,12 +111,12 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
         {
             if (SessionContext.LoginManager.Role == Role.MudurYardimcisi)
                 dtc_field.Visibility = Edit_Actor.Visibility = Delete_Actor.Visibility = Visibility.Collapsed;
-            dg_Actor.ItemsSource = genericActorService.GetAll();
+            var entities = genericActorService.GetAll();
+            entities.ForEach(item=> {
+                item.State = actorService.IsFree(item);
+            });
+            dg_Actor.ItemsSource = entities;
         }
-
-        private void dg_Actor_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+       
     }
 }

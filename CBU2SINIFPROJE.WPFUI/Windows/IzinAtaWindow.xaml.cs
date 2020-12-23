@@ -13,8 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using CBU2SINIFPROJE.BLL.ExtensionMethods;
+using CBU2SINIFPROJE.BLL.Interfaces;
 using CBU2SINIFPROJE.BLL.Status;
 using CBU2SINIFPROJE.Entities.Concrete;
+
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CBU2SINIFPROJE.WPFUI.Windows
 {
@@ -23,12 +26,15 @@ namespace CBU2SINIFPROJE.WPFUI.Windows
     /// </summary>
     public partial class IzinAtaWindow : Window
     {
-        private readonly Employee employee;
+        private  Employee employee;
 
-        public IzinAtaWindow(Employee employee)
+        public IzinAtaWindow()
         {
             InitializeComponent();
             InitEvents();
+        }
+        public void Init(Employee employee)
+        {
             this.employee = employee;
         }
         public void InitEvents()
@@ -52,8 +58,8 @@ namespace CBU2SINIFPROJE.WPFUI.Windows
             }
             Vacation vacation = new()
             {
-                Manager=SessionContext.LoginManager,
-                Duration=new(dp_baslangic.SelectedDate.Value,dp_bitis.SelectedDate.Value)
+                Manager = SessionContext.LoginManager,
+                Duration = new(dp_baslangic.SelectedDate.Value, dp_bitis.SelectedDate.Value)
             };
             if (employee.Vacations.IsNull())
             {
@@ -63,7 +69,6 @@ namespace CBU2SINIFPROJE.WPFUI.Windows
             employee.Vacations.Add(vacation);
             dg_izinler.Items.Refresh();
             MessageBox.Show("Kaydedildi");
-
         }
 
         private void IzinIptal_Click(object sender, RoutedEventArgs e)
