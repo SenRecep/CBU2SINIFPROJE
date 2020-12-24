@@ -30,27 +30,32 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
     {
         private readonly IGenericService<OfficeWorker> genericOfwService;
         private readonly IServiceProvider serviceProvider;
+        private readonly IOfficeWorkerService ofwService;
 
-        public PersonelIslemleri(IGenericService<OfficeWorker> genericOfwService,IServiceProvider serviceProvider)
+        private OfWWindow window;
+
+        public PersonelIslemleri(IGenericService<OfficeWorker> genericOfwService, IOfficeWorkerService ofwService, IServiceProvider serviceProvider)
         {
             InitializeComponent();
             InitEvents();
             this.genericOfwService = genericOfwService;
+            this.ofwService = ofwService;
             this.serviceProvider = serviceProvider;
+            window = serviceProvider.GetService<OfWWindow>();
         }
 
         private void InitEvents()
         {
+            Loaded += PersonelIslemleri_Loaded;
             Delete_Employee.Click += Delete_Employee_Click;
             Edit_Employee.Click += Edit_Employee_Click;
             Izin_Employee.Click += Izin_Employee_Click;
             Btn_employeeAdd.Click += Btn_employeeAdd_Click;
-            this.Loaded += PersonelIslemleri_Loaded;
         }
 
         private void Btn_employeeAdd_Click(object sender, RoutedEventArgs e)
         {
-            OfWWindow window = serviceProvider.GetService<OfWWindow>();
+            window = serviceProvider.GetService<OfWWindow>();
             window.EditMode = false;
             window.DataContext = new OfWAddModel();
             window.ShowDialog();
@@ -63,9 +68,14 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
 
         private void PersonelIslemleri_Loaded(object sender, RoutedEventArgs e)
         {
-            dg_Employee.ItemsSource = genericOfwService.GetAll();
             if (SessionContext.LoginManager.Role == Role.MudurYardimcisi)
                     Edit_Employee.Visibility =Delete_Employee.Visibility = Visibility.Collapsed;
+            dg_Employee.ItemsSource = null;
+            var entities = genericOfwService.GetAll();
+            entities.ForEach(item => {
+                item.State = ofwService.IsFree(item);
+            });
+            dg_Employee.ItemsSource = entities;
         }
 
         private void Izin_Employee_Click(object sender, RoutedEventArgs e)
@@ -76,6 +86,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
                 var window = serviceProvider.GetService<IzinAtaWindow>();
                 window.Init(selected);
                 window.ShowDialog();
+                NavigationService.Refresh();
             }
         }
 

@@ -53,7 +53,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
                 var window = serviceProvider.GetService<IzinAtaWindow>();
                 window.Init(selectedActor);
                 window.ShowDialog();
-                this.NavigationService.Refresh();
+                NavigationService.Refresh();
             }
         }
 
