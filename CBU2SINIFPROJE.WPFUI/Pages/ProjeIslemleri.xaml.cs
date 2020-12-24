@@ -25,12 +25,12 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
     /// </summary>
     public partial class ProjeIslemleri : Page
     {
-        private readonly IGenericService<Project> projectService;
+        private readonly IGenericService<Project> genericProjectService;
 
-        public ProjeIslemleri(IGenericService<Project>projectService)
+        public ProjeIslemleri(IGenericService<Project> genericProjectService)
         {
             InitializeComponent();
-            this.projectService = projectService;
+            this.genericProjectService = genericProjectService;
             InitEvents();
         }
 
@@ -38,6 +38,18 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
         {
             this.Loaded += ProjeIslemleri_Loaded;
             ListCalisanlar.Click += ListCaslisanlar_Click;
+            Delete_Project.Click += Delete_Project_Click;
+        }
+
+        private void Delete_Project_Click(object sender, RoutedEventArgs e)
+        {
+            Project selectedProject = dg_Project.SelectedItem?.Cast<Project>();
+            if(!selectedProject.IsNull())
+            {
+                genericProjectService.Delete(selectedProject);
+                dg_Project.Items.Refresh();
+            }
+
         }
 
         private void ListCaslisanlar_Click(object sender, RoutedEventArgs e)
@@ -52,7 +64,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
 
         private void ProjeIslemleri_Loaded(object sender, RoutedEventArgs e)
         {
-            dg_Project.ItemsSource = projectService.GetAll();
+            dg_Project.ItemsSource = genericProjectService.GetAll();
         }
     }
 }

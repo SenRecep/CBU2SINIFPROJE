@@ -26,10 +26,10 @@
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Düzenle" x:Name="Edit_Actor"/>
+                    <MenuItem Header="Düzenle" x:Name="Edit_Project"/>
                     <MenuItem Header="Çalışanlar" x:Name="ListCalisanlar"/>
-                    <MenuItem Header="İzin Ver" x:Name="Izin_Actor"/>
-                    <MenuItem Header="Sil" x:Name="Delete_Actor"/>
+                    <MenuItem Header="İzin Ver" x:Name="Izin_Project"/>
+                    <MenuItem Header="Sil" x:Name="Delete_Project"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
