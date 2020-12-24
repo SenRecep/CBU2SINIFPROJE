@@ -1,5 +1,7 @@
 ﻿using CBU2SINIFPROJE.BLL.ExtensionMethods;
 using CBU2SINIFPROJE.BLL.Interfaces;
+using CBU2SINIFPROJE.BLL.Status;
+using CBU2SINIFPROJE.Core.Enums;
 using CBU2SINIFPROJE.Entities.Concrete;
 using CBU2SINIFPROJE.WPFUI.Windows;
 
@@ -18,6 +20,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace CBU2SINIFPROJE.WPFUI.Pages
 {
     /// <summary>
@@ -26,11 +29,13 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
     public partial class ProjeIslemleri : Page
     {
         private readonly IGenericService<Project> genericProjectService;
+        private readonly IServiceProvider serviceProvider;
 
-        public ProjeIslemleri(IGenericService<Project> genericProjectService)
+        public ProjeIslemleri(IGenericService<Project> genericProjectService, IServiceProvider serviceProvider)
         {
             InitializeComponent();
             this.genericProjectService = genericProjectService;
+            this.serviceProvider = serviceProvider;
             InitEvents();
         }
 
@@ -39,6 +44,14 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
             this.Loaded += ProjeIslemleri_Loaded;
             ListCalisanlar.Click += ListCaslisanlar_Click;
             Delete_Project.Click += Delete_Project_Click;
+            Btn_projectAdd.Click += Btn_projectAdd_Click;
+        }
+
+        private void Btn_projectAdd_Click(object sender, RoutedEventArgs e)
+        {
+            ProjectWindow window = serviceProvider.GetService(typeof(ProjectWindow)).Cast<ProjectWindow>();
+            window.ShowDialog();
+            dg_Project.Items.Refresh();
         }
 
         private void Delete_Project_Click(object sender, RoutedEventArgs e)
@@ -64,6 +77,8 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
 
         private void ProjeIslemleri_Loaded(object sender, RoutedEventArgs e)
         {
+            if (SessionContext.LoginManager.Role == Role.MudurYardimcisi)
+                Edit_Project.Visibility = Delete_Project.Visibility = Visibility.Collapsed;
             dg_Project.ItemsSource = genericProjectService.GetAll();
         }
     }
