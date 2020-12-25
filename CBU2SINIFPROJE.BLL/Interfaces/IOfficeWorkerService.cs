@@ -11,6 +11,9 @@ namespace CBU2SINIFPROJE.BLL.Interfaces
 {
    public interface IOfficeWorkerService
     {
+        EmployeeState IsFree(OfficeWorker officeWorker, Duration duration);
         EmployeeState IsFree(OfficeWorker officeWorker);
+        IEnumerable<OfficeWorker> GetAllFreeOfficeWorker();
+        IEnumerable<OfficeWorker> GetAllFreeOfficeWorker(Duration duration);
     }
 }

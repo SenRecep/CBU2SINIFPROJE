@@ -9,6 +9,7 @@ namespace CBU2SINIFPROJE.WPFUI.Models
 {
     public class ProjectAddViewModel
     {
+        public Company Company { get; set; }
         public Project Project { get; set; }
         public List<Company> Companies { get; set; }
         public List<Actor> Actors { get; set; }

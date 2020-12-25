@@ -13,5 +13,8 @@ namespace CBU2SINIFPROJE.BLL.Interfaces
     {
         void DeleteActor(Actor actor);
         EmployeeState IsFree(Actor  actor);
+        EmployeeState IsFree(Actor actor, Duration duration);
+        IEnumerable<Actor> GetAllFreeActor();
+        IEnumerable<Actor> GetAllFreeActor(Duration duration);
     }
 }

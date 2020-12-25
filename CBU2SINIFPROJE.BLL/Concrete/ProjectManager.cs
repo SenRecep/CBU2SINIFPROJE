@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using CBU2SINIFPROJE.BLL.ExtensionMethods;
 using CBU2SINIFPROJE.BLL.Interfaces;
 using CBU2SINIFPROJE.DAL.Interfaces;
@@ -18,26 +16,70 @@ namespace CBU2SINIFPROJE.BLL.Concrete
         {
             this.projectDal = projectDal;
         }
-    
+
         public void AddProject(List<Actor> actors, List<OfficeWorker> officeWorkers, Company company, Project project)
         {
             projectDal.Add(project);
             officeWorkers.ToList().ForEach(item =>
             {
-                if(item.Projects.IsNull())
+                if (item.Projects.IsNull())
                     item.Projects = new List<Project>();
                 item.Projects.Add(project);
             });
             actors.ToList().ForEach(item =>
             {
-                if(item.Projects.IsNull())
+                if (item.Projects.IsNull())
                     item.Projects = new List<Project>();
                 item.Projects.Add(project);
             });
+            if (project.Employees.IsNull())
+                project.Employees = new();
             project.Employees.AddRange(officeWorkers);
             project.Employees.AddRange(actors);
 
+            if (company.Projects.IsNull())
+                company.Projects = new();
+            project.Company = company;
             company.Projects.Add(project);
+        }
+
+        private void ClearProject(Project project)
+        {
+            project.Employees.ForEach(item=> {
+                if (item is Actor actor)
+                    actor.Projects.Remove(project);
+                if (item is OfficeWorker ofw)
+                    ofw.Projects.Remove(project);
+            });
+            project.Employees.Clear();
+            project.Company.Projects.Remove(project);
+        }
+        public void UpdateProject(List<Actor> actors, List<OfficeWorker> officeWorkers, Company company, Project project)
+        {
+            ClearProject(project);
+
+            officeWorkers.ToList().ForEach(item =>
+            {
+                if (item.Projects.IsNull())
+                    item.Projects = new List<Project>();
+                item.Projects.Add(project);
+            });
+            actors.ToList().ForEach(item =>
+            {
+                if (item.Projects.IsNull())
+                    item.Projects = new List<Project>();
+                item.Projects.Add(project);
+            });
+            if (project.Employees.IsNull())
+                project.Employees = new();
+            project.Employees.AddRange(officeWorkers);
+            project.Employees.AddRange(actors);
+
+            if (company.Projects.IsNull())
+                company.Projects = new();
+            company.Projects.Add(project);
+            project.Company = company;
+            projectDal.Update(project);
         }
     }
 }

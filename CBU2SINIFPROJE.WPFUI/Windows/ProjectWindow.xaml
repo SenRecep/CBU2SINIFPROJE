@@ -3,13 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Models="clr-namespace:CBU2SINIFPROJE.WPFUI.Models"
         xmlns:local="clr-namespace:CBU2SINIFPROJE.WPFUI.Windows"
         mc:Ignorable="d"
         Title="ProjectWindow" Height="Auto" Width="800">
-    <Window.DataContext>
-        <Models:ProjectAddViewModel/>
-    </Window.DataContext>
     <Window.Resources>
         <Style TargetType="DataGrid">
             <Setter Property="AutoGenerateColumns" Value="False"/>
@@ -18,13 +14,14 @@
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         </Style>
     </Window.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="50" VerticalAlignment="Center">
             <Label Content="Proje Adı:"/>
             <TextBox x:Name="tb_Name" Text="{Binding Project.Name, Mode=TwoWay}"/>
             <Label Content="Maliyet:"/>
             <TextBox x:Name="tb_Cost" Text="{Binding Project.Cost, Mode=TwoWay}"/>
             <Label Content="Şirket:"/>
-            <ComboBox x:Name="cb_Company" ItemsSource="{Binding Path=Companies}" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Path=Project.Company}"/>
+            <ComboBox x:Name="cb_Company" ItemsSource="{Binding Path=Companies}"  DisplayMemberPath="Name" SelectedItem="{Binding Company}"/>
             <GroupBox Header="Çalışma Aralığı">
                 <StackPanel Margin="10">
                     <Label Content="Başlangıç Tarihi"/>
@@ -42,7 +39,7 @@
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Aktörler:"/>
                 <Label Grid.Row="2" Content="Ofis Çalışanları:"/>
-                <DataGrid Grid.Row="1" x:Name="dg_actors" >
+                <DataGrid Grid.Row="1" x:Name="dg_actors" ItemsSource="{Binding Path=Actors}" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Ad" Binding="{Binding FirstName}"/>
                         <DataGridTextColumn Header="Soyad" Binding="{Binding LastName}"/>
@@ -51,7 +48,7 @@
                         <DataGridTextColumn Header="Adres" Binding="{Binding Adress}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <DataGrid Grid.Row="3" x:Name="dg_ofw" >
+                <DataGrid Grid.Row="3" x:Name="dg_ofw" ItemsSource="{Binding Path=OfficeWorkers}" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Ad" Binding="{Binding FirstName}"/>
                         <DataGridTextColumn Header="Soyad" Binding="{Binding LastName}"/>
@@ -63,4 +60,6 @@
             </Grid>
             <Button x:Name="btn_Submit" Content="Kaydet" Style="{StaticResource navigatorButton}" Margin="0"/>
         </StackPanel>
+
+    </ScrollViewer>
 </Window>

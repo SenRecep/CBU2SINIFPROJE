@@ -45,6 +45,29 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
             ListCalisanlar.Click += ListCaslisanlar_Click;
             Delete_Project.Click += Delete_Project_Click;
             Btn_projectAdd.Click += Btn_projectAdd_Click;
+            Edit_Project.Click += Edit_Project_Click;
+        }
+
+        private void Edit_Project_Click(object sender, RoutedEventArgs e)
+        {
+            var model = dg_Project.SelectedItem.Cast<Project>();
+            if (!model.IsNull())
+            {
+                Window employees = new ListEmployeeWindow(model);
+                employees.Show();
+                ProjectWindow window = serviceProvider.GetService(typeof(ProjectWindow)).Cast<ProjectWindow>();
+                window.Init(model);
+                window.Show();
+                App.Current.MainWindow.IsEnabled = false;
+                this.IsEnabled = false;
+                window.Closed += (s, ev) =>
+                {
+                    employees.Close();
+                    dg_Project.Items.Refresh();
+                    this.IsEnabled = true;
+                };
+            }
+
         }
 
         private void Btn_projectAdd_Click(object sender, RoutedEventArgs e)
@@ -57,7 +80,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
         private void Delete_Project_Click(object sender, RoutedEventArgs e)
         {
             Project selectedProject = dg_Project.SelectedItem?.Cast<Project>();
-            if(!selectedProject.IsNull())
+            if (!selectedProject.IsNull())
             {
                 genericProjectService.Delete(selectedProject);
                 dg_Project.Items.Refresh();
