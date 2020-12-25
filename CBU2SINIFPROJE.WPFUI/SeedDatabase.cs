@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using CBU2SINIFPROJE.BLL.ExtensionMethods;
 using CBU2SINIFPROJE.BLL.Interfaces;
 using CBU2SINIFPROJE.Core.Enums;
 using CBU2SINIFPROJE.Entities.Concrete;
@@ -39,6 +40,8 @@ namespace CBU2SINIFPROJE.WPFUI
             SeedOfficeWorker();
             SeedCompany();
             SeedProject();
+            var mudur = managerService.GetById(1);
+            SeedVocations(mudur);
         }
 
         private void SeedProject()
@@ -52,21 +55,21 @@ namespace CBU2SINIFPROJE.WPFUI
                 var projectCount = faker.Random.Byte(1, 2);
                 for (int i = 0; i < projectCount; i++)
                 {
-                    List<OfficeWorker> _officeworkers = officeworker.Where(x => x.Projects == null).OrderBy(x => faker.Random.Int(0, officeworker.Count * 2)).Take(faker.Random.Int(1,2)).ToList();
+                    List<OfficeWorker> _officeworkers = officeworker.Where(x => x.Projects == null).OrderBy(x => faker.Random.Int(0, officeworker.Count * 2)).Take(faker.Random.Int(1, 2)).ToList();
                     List<Actor> _actors = actors.Where(x => x.Projects == null).OrderBy(x => faker.Random.Int(0, actors.Count * 2)).Take(faker.Random.Int(1, 2)).ToList();
                     var totalEmployee = _officeworkers.Count() + _actors.Count();
-                    var duration = new Duration(faker.Date.Recent(faker.Random.Byte(3,10)), faker.Date.Soon(faker.Random.Byte(3, 10)));
-                    
+                    var duration = new Duration(faker.Date.Recent(faker.Random.Byte(3, 10)), faker.Date.Soon(faker.Random.Byte(3, 10)));
+
                     Project project = new()
                     {
-                        Name=faker.Commerce.ProductName(),
+                        Name = faker.Commerce.ProductName(),
                         Company = company,
-                        Cost = faker.Random.Decimal(5000, 7000)*totalEmployee,
-                        Duration= duration,
-                        Employees=new List<Employee>()
+                        Cost = faker.Random.Decimal(5000, 7000) * totalEmployee,
+                        Duration = duration,
+                        Employees = new List<Employee>()
                     };
 
-                    projectService.AddProject(_actors,_officeworkers,company,project);
+                    projectService.AddProject(_actors, _officeworkers, company, project);
                 }
             }
         }
@@ -96,7 +99,7 @@ namespace CBU2SINIFPROJE.WPFUI
                 {
                     Name = faker.Company.CompanyName(),
                     Adress = new(faker.Address.State(), faker.Address.City(), faker.Address.StreetAddress()),
-                    Projects=new List<Project>()
+                    Projects = new List<Project>()
                 };
                 companyService.Add(company);
             }
@@ -149,7 +152,29 @@ namespace CBU2SINIFPROJE.WPFUI
             managerService.Add(yardimci1);
             managerService.Add(yardimci2);
             SeedCredentials(mudur, yardimci1, yardimci2);
-
+        }
+        private void SeedVocations(Manager manager)
+        {
+            var freeActors = actorService.GetAll().Where(x => x.Projects.IsNull()).Take(3).ToList();
+            var freeOfficeWorkers = officeWorkerService.GetAll().Where(x => x.Projects.IsNull()).Take(4).ToList();
+            freeActors.ForEach(x=>VocationEmployee(x,manager));
+            freeOfficeWorkers.ForEach(x=>VocationEmployee(x,manager));
+        }
+        private void VocationEmployee(Employee employee,Manager manager)
+        {
+            Bogus.Faker faker = new Bogus.Faker();
+            var duration = new Duration(faker.Date.Recent(faker.Random.Byte(3, 10)), faker.Date.Soon(faker.Random.Byte(3, 10)));
+            Vacation vacation = new()
+            {
+                Manager= manager,
+                Duration=duration
+            };
+            employee.Vacations = new();
+            employee.Vacations.Add(vacation);
+            if (employee is Actor actor)
+                actorService.Update(actor);
+            if (employee is OfficeWorker officeWorker)
+                officeWorkerService.Update(officeWorker);
         }
         private void SeedCredentials(Manager mudur, Manager muduryardimcisi1, Manager muduryardimcisi2)
         {
