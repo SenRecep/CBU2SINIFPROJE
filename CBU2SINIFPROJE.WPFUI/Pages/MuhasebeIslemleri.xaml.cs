@@ -43,6 +43,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
             totalEmployeePayments.Text = $"{payments.ToString("c")}";
 
             var fixedExpenses = FixedExpenses.Text.ToInt();
+            FixedExpenses.Text= $"{fixedExpenses.ToString("c")}";
 
             var result = revenue - payments - fixedExpenses;
 
