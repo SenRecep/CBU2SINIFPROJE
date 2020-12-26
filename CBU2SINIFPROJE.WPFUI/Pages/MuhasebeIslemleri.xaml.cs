@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using CBU2SINIFPROJE.BLL.ExtensionMethods;
+using CBU2SINIFPROJE.BLL.Interfaces;
+
 namespace CBU2SINIFPROJE.WPFUI.Pages
 {
     /// <summary>
@@ -20,9 +23,32 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
     /// </summary>
     public partial class MuhasebeIslemleri : Page
     {
-        public MuhasebeIslemleri()
+        private readonly IAccountingService accountingService;
+
+        public MuhasebeIslemleri(IAccountingService accountingService)
         {
             InitializeComponent();
+            this.accountingService = accountingService;
+            Loaded += MuhasebeIslemleri_Loaded;
+        }
+
+        private void MuhasebeIslemleri_Loaded(object sender, RoutedEventArgs e)
+        {
+            lbl_title.Content = $"{DateTime.Now.Month}.Ay Gelir Gider Raporu";
+
+            var revenue = accountingService.TotalCost();
+            totalProjectRevenue.Text = $"{revenue.ToString("c")}";
+
+            var payments = accountingService.TotalWages();
+            totalEmployeePayments.Text = $"{payments.ToString("c")}";
+
+            var fixedExpenses = FixedExpenses.Text.ToInt();
+
+            var result = revenue - payments - fixedExpenses;
+
+            net.Text = $"{result.ToString("c")}";
+            if (result<0)
+                net.Foreground= (SolidColorBrush)(new BrushConverter().ConvertFrom("#e74c3c"));
         }
     }
 }

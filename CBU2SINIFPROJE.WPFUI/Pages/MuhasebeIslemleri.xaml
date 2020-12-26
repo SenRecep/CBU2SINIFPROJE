@@ -6,9 +6,27 @@
       xmlns:local="clr-namespace:CBU2SINIFPROJE.WPFUI.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      FontSize="20"
       Title="MuhasebeIslemleri">
 
-    <Grid>
-        <Label Content="Muhasebe Islemleri" />
-    </Grid>
+    <StackPanel HorizontalAlignment="Center" >
+        <Label HorizontalContentAlignment="Center"  x:Name="lbl_title" Content="X.Ay Gelir Gider Raporu"/>
+        <DockPanel Margin="0,5,0,0">
+            <TextBlock Text="Proje Gelirleri:"/>
+            <TextBlock x:Name="totalProjectRevenue" Text="TL" Foreground="#2ecc71" Margin="5,0,0,0" HorizontalAlignment="Right"/>
+        </DockPanel>
+        <DockPanel Margin="0,5,0,0">
+            <TextBlock Text="Çalışan Ödemeleri:"/>
+            <TextBlock x:Name="totalEmployeePayments" Text="TL" Foreground="#e74c3c" Margin="5,0,0,0" HorizontalAlignment="Right"/>
+        </DockPanel>
+        <DockPanel Margin="0,5,0,0">
+            <TextBlock Text="Sabit Giderler:"/>
+            <TextBlock x:Name="FixedExpenses" Text="18000" Foreground="#e74c3c" Margin="5,0,0,0" HorizontalAlignment="Right"/>
+        </DockPanel>
+        <Separator/>
+        <DockPanel Margin="0,5,0,0">
+            <TextBlock Text="Net:"/>
+            <TextBlock x:Name="net" Text="" Foreground="#2ecc71"  Margin="5,0,0,0" HorizontalAlignment="Right"/>
+        </DockPanel>
+    </StackPanel>
 </Page>

@@ -52,7 +52,7 @@ namespace CBU2SINIFPROJE.WPFUI
             foreach (Company company in companies)
             {
                 Bogus.Faker faker = new Bogus.Faker();
-                var projectCount = faker.Random.Byte(1, 2);
+                var projectCount = faker.Random.Byte(1, 3);
                 for (int i = 0; i < projectCount; i++)
                 {
                     List<OfficeWorker> _officeworkers = officeworker.Where(x => x.Projects == null).OrderBy(x => faker.Random.Int(0, officeworker.Count * 2)).Take(faker.Random.Int(1, 2)).ToList();
@@ -64,7 +64,7 @@ namespace CBU2SINIFPROJE.WPFUI
                     {
                         Name = faker.Commerce.ProductName(),
                         Company = company,
-                        Cost = faker.Random.Double(5000, 7000) * totalEmployee,
+                        Cost = faker.Random.Double(4000, 6000) * totalEmployee,
                         Duration = duration,
                         Employees = new List<Employee>()
                     };
@@ -84,7 +84,7 @@ namespace CBU2SINIFPROJE.WPFUI
                     FirstName = person.FirstName,
                     LastName = person.LastName,
                     Adress = new(person.Address.State, person.Address.City, person.Address.Street),
-                    Salary = person.Random.Int(2500, 4000),
+                    Salary = person.Random.Int(3000, 4500),
                     Position = (Position)person.Random.Byte(0, 1),
                 };
                 officeWorkerService.Add(officeWorker);
@@ -92,7 +92,7 @@ namespace CBU2SINIFPROJE.WPFUI
         }
         private void SeedCompany()
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 8; i++)
             {
                 Bogus.Faker faker = new Bogus.Faker();
                 Company company = new()
@@ -114,7 +114,7 @@ namespace CBU2SINIFPROJE.WPFUI
                     FirstName = person.FirstName,
                     LastName = person.LastName,
                     Adress = new(person.Address.State, person.Address.City, person.Address.Street),
-                    Salary = person.Random.Int(2500, 5000),
+                    Salary = person.Random.Int(3500, 5000),
                     Field = (Field)person.Random.Byte(0, 2),
                 };
                 actorService.Add(actor);
@@ -129,7 +129,7 @@ namespace CBU2SINIFPROJE.WPFUI
                 LastName = "Kılıç",
                 Adress = new("Istanbul", "Kağıthane", "Cumhuriyet Sokak No:3 D:4"),
                 Role = Role.Mudur,
-                Salary = 10000,
+                Salary = 0,
             };
             Manager yardimci1 = new()
             {

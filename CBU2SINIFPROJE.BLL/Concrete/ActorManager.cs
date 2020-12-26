@@ -44,10 +44,27 @@ namespace CBU2SINIFPROJE.BLL.Concrete
         {
             var all = genericRepository.GetAll();
             foreach (var item in all)
-                if (IsFree(item,duration) == EmployeeState.Bosta)
+                if (IsFree(item, duration) == EmployeeState.Bosta)
                     yield return item;
         }
-        public EmployeeState IsFree(Actor actor,Duration duration)
+
+        public List<Actor> GetMonthlyActors(List<Project> projects)
+        {
+            List<Actor> result = new List<Actor>();
+            var actors = genericRepository.GetAll();
+            foreach (var actor in actors)
+                if (!actor.Projects.IsNull())
+                    foreach (var project in actor.Projects)
+                        if (projects.Contains(project))
+                        {
+                            result.Add(actor);
+                            break;
+                        }
+
+            return result.Distinct().ToList();
+        }
+
+        public EmployeeState IsFree(Actor actor, Duration duration)
         {
             if (!actor.Vacations.IsNull())
                 foreach (var item in actor.Vacations)

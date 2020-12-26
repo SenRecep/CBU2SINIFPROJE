@@ -25,6 +25,7 @@
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Düzenle" x:Name="Edit_Company"/>
+                    <MenuItem Header="Projeler" x:Name="List_Projects"/>
                     <MenuItem Header="Sil" x:Name="Delete_Company"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>

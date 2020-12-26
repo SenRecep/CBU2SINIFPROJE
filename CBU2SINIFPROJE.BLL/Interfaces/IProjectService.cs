@@ -10,7 +10,8 @@ namespace CBU2SINIFPROJE.BLL.Interfaces
 {
    public interface IProjectService
     {
-        public void AddProject(List<Actor> actors,List<OfficeWorker> officeWorkers,Company company,Project project);
-        public void UpdateProject(List<Actor> actors,List<OfficeWorker> officeWorkers,Company company,Project project);
+         void AddProject(List<Actor> actors,List<OfficeWorker> officeWorkers,Company company,Project project);
+         void UpdateProject(List<Actor> actors,List<OfficeWorker> officeWorkers,Company company,Project project);
+         List<Project> GetMonthlyProjects();
     }
 }

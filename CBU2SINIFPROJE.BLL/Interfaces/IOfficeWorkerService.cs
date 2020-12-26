@@ -15,5 +15,6 @@ namespace CBU2SINIFPROJE.BLL.Interfaces
         EmployeeState IsFree(OfficeWorker officeWorker);
         IEnumerable<OfficeWorker> GetAllFreeOfficeWorker();
         IEnumerable<OfficeWorker> GetAllFreeOfficeWorker(Duration duration);
+        List<OfficeWorker> GetMonthlyOfficeWorkers(List<Project> projects);
     }
 }

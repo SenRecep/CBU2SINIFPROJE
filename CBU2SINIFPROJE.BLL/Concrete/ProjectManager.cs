@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using CBU2SINIFPROJE.BLL.ExtensionMethods;
@@ -80,6 +81,11 @@ namespace CBU2SINIFPROJE.BLL.Concrete
             company.Projects.Add(project);
             project.Company = company;
             projectDal.Update(project);
+        }
+
+        public List<Project> GetMonthlyProjects()
+        {
+           return projectDal.GetAll().Where(x=>x.Duration.StartDate.Month==DateTime.Now.Month).ToList();
         }
     }
 }

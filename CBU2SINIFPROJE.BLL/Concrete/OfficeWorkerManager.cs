@@ -6,6 +6,7 @@ using CBU2SINIFPROJE.Entities.Concrete;
 using CBU2SINIFPROJE.BLL.ExtensionMethods;
 using System.Collections.Generic;
 using CBU2SINIFPROJE.DAL.Interfaces;
+using System.Linq;
 
 namespace CBU2SINIFPROJE.BLL.Concrete
 {
@@ -32,6 +33,21 @@ namespace CBU2SINIFPROJE.BLL.Concrete
             foreach (var item in all)
                 if (IsFree(item) == EmployeeState.Bosta)
                     yield return item;
+        }
+
+        public List<OfficeWorker> GetMonthlyOfficeWorkers(List<Project> projects)
+        {
+            List<OfficeWorker> result = new List<OfficeWorker>();
+            var officeWorkers = genericRepository.GetAll();
+            foreach (var officeWorker in officeWorkers)
+                if (!officeWorker.Projects.IsNull())
+                    foreach (var project in officeWorker.Projects)
+                    if (projects.Contains(project))
+                    {
+                        result.Add(officeWorker);
+                        break;
+                    }
+            return result.Distinct().ToList();
         }
 
         public EmployeeState IsFree(OfficeWorker officeWorker)
