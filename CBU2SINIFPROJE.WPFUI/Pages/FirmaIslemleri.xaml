@@ -9,6 +9,25 @@
       Title="FirmaIslemleri">
 
     <Grid>
-        <Label Content="Firma Islemleri"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Firma Islemleri" HorizontalContentAlignment="Center" FontSize="18" />
+        <Button Grid.Row="1" x:Name="Btn_companyAdd" Content="+" Background="#1297e0" FontSize="18" Foreground="White" Margin="0,10"/>
+        <DataGrid Grid.Row="2" x:Name="dg_Company" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ad" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Proje Sayısı" Binding="{Binding Projects.Count}"/>
+                <DataGridTextColumn Header="Adres" Binding="{Binding Adress}"/>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Düzenle" x:Name="Edit_Company"/>
+                    <MenuItem Header="Sil" x:Name="Delete_Company"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
     </Grid>
 </Page>

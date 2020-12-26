@@ -51,6 +51,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
             Edit_Employee.Click += Edit_Employee_Click;
             Izin_Employee.Click += Izin_Employee_Click;
             Btn_employeeAdd.Click += Btn_employeeAdd_Click;
+            Project_Detail.Click += Project_Detail_Click;
         }
 
         private void Btn_employeeAdd_Click(object sender, RoutedEventArgs e)
@@ -65,7 +66,15 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
                 window.IsSaved = false;
             }
         }
-
+        private void Project_Detail_Click(object sender, RoutedEventArgs e)
+        {
+            OfficeWorker selectedActor = dg_Employee.SelectedItem?.Cast<OfficeWorker>();
+            if (!selectedActor.IsNull())
+                if (!selectedActor.Projects.IsNull() && selectedActor.Projects.Any())
+                    new ProjectDetailWindow(selectedActor).ShowDialog();
+                else
+                    MessageBox.Show("Sectiginiz calisanin mevcutta veya gecmiste bir projesi bulunmamaktadir");
+        }
         private void PersonelIslemleri_Loaded(object sender, RoutedEventArgs e)
         {
             if (SessionContext.LoginManager.Role == Role.MudurYardimcisi)

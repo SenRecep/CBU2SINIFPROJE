@@ -109,7 +109,17 @@ namespace CBU2SINIFPROJE.WPFUI.Windows
                 if (EditMode)
                     projectService.UpdateProject(actors, officeWorkers, model.Company, project);
                 else
+                {
+                    int? totalProjectsCount = model.Company.Projects?.Count+1;
+                    if (totalProjectsCount.HasValue && totalProjectsCount.Value>3)
+                    {
+                        var discountPrice = project.Cost * 0.8;
+                        MessageBox.Show($"{model.Company.Name} firması ile {totalProjectsCount}. Projeniz olduğundan dolayı %20'lik indirim uygulanarak\n{model.Project.Cost} -> {discountPrice}\nOlarak Hesaplanmiştır");
+                        project.Cost = discountPrice;
+                    }
                     projectService.AddProject(actors, officeWorkers, model.Company, project);
+                }
+                   
                 MessageBox.Show("Kaydedildi");
                 this.Close();
             }

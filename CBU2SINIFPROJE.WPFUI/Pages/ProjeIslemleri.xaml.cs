@@ -58,6 +58,8 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
                 ProjectWindow window = serviceProvider.GetService(typeof(ProjectWindow)).Cast<ProjectWindow>();
                 window.Init(model);
                 window.Show();
+                employees.Left = 0;
+                window.Left = employees.ActualWidth+20;
                 App.Current.MainWindow.IsEnabled = false;
                 this.IsEnabled = false;
                 window.Closed += (s, ev) =>

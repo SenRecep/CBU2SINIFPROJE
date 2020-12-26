@@ -29,6 +29,7 @@
                 <ContextMenu>
                     <MenuItem Header="Düzenle" x:Name="Edit_Employee"/>
                     <MenuItem Header="İzin Ver" x:Name="Izin_Employee"/>
+                    <MenuItem Header="Proje Detayı" x:Name="Project_Detail"/>
                     <MenuItem Header="Sil" x:Name="Delete_Employee"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>

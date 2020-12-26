@@ -64,7 +64,7 @@ namespace CBU2SINIFPROJE.WPFUI
                     {
                         Name = faker.Commerce.ProductName(),
                         Company = company,
-                        Cost = faker.Random.Decimal(5000, 7000) * totalEmployee,
+                        Cost = faker.Random.Double(5000, 7000) * totalEmployee,
                         Duration = duration,
                         Employees = new List<Employee>()
                     };

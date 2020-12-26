@@ -23,6 +23,7 @@
                 <DataGridTextColumn Header="Şirket" Binding="{Binding Company.Name}"/>
                 <DataGridTextColumn Header="Çalışma Aralığı" Binding="{Binding Duration}"/>
                 <DataGridTextColumn Header="Çalışan Sayısı" Binding="{Binding Employees.Count}"/>
+                <DataGridTextColumn Header="Adres" Binding="{Binding Company.Adress}"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>

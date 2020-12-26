@@ -43,6 +43,17 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
             Delete_Actor.Click += Delete_Actor_Click;
             Btn_actorAdd.Click += Btn_actorAdd_Click;
             Izin_Actor.Click += Izin_Actor_Click;
+            Project_Detail.Click += Project_Detail_Click;
+        }
+
+        private void Project_Detail_Click(object sender, RoutedEventArgs e)
+        {
+            Actor selectedActor = dg_Actor.SelectedItem?.Cast<Actor>();
+            if (!selectedActor.IsNull())
+                if (!selectedActor.Projects.IsNull() && selectedActor.Projects.Any())
+                    new ProjectDetailWindow(selectedActor).ShowDialog();
+                else
+                    MessageBox.Show("Sectiginiz calisanin mevcutta veya gecmiste bir projesi bulunmamaktadir");
         }
 
         private void Izin_Actor_Click(object sender, RoutedEventArgs e)
@@ -113,7 +124,8 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
                 dtc_field.Visibility = Edit_Actor.Visibility = Delete_Actor.Visibility = Visibility.Collapsed;
             dg_Actor.ItemsSource = null;
             var entities = genericActorService.GetAll();
-            entities.ForEach(item=> {
+            entities.ForEach(item =>
+            {
                 item.State = actorService.IsFree(item);
             });
             dg_Actor.ItemsSource = entities;

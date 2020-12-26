@@ -8,7 +8,7 @@ namespace CBU2SINIFPROJE.Entities.Interfaces
     public interface IProject:IEntityBase
     {
         Company Company { get; set; }
-        decimal Cost { get; set; }
+        double Cost { get; set; }
         Duration Duration { get; set; }
         List<Employee> Employees { get; set; }
         string Name { get; set; }
