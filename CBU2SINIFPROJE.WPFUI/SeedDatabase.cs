@@ -76,7 +76,7 @@ namespace CBU2SINIFPROJE.WPFUI
 
         private void SeedOfficeWorker()
         {
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 45; i++)
             {
                 Bogus.Person person = new Bogus.Person();
                 OfficeWorker officeWorker = new()
@@ -106,7 +106,7 @@ namespace CBU2SINIFPROJE.WPFUI
         }
         private void SeedActors()
         {
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 45; i++)
             {
                 Bogus.Person person = new Bogus.Person();
                 Actor actor = new()
