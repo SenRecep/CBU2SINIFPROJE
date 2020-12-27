@@ -40,7 +40,7 @@ namespace CBU2SINIFPROJE.WPFUI
             SeedOfficeWorker();
             SeedCompany();
             SeedProject();
-            var mudur = managerService.GetById(1);
+            Manager mudur = managerService.GetById(1);
             SeedVocations(mudur);
         }
 
@@ -52,13 +52,13 @@ namespace CBU2SINIFPROJE.WPFUI
             foreach (Company company in companies)
             {
                 Bogus.Faker faker = new Bogus.Faker();
-                var projectCount = faker.Random.Byte(1, 3);
+                byte projectCount = faker.Random.Byte(1, 3);
                 for (int i = 0; i < projectCount; i++)
                 {
                     List<OfficeWorker> _officeworkers = officeworker.Where(x => x.Projects == null).OrderBy(x => faker.Random.Int(0, officeworker.Count * 2)).Take(faker.Random.Int(1, 2)).ToList();
                     List<Actor> _actors = actors.Where(x => x.Projects == null).OrderBy(x => faker.Random.Int(0, actors.Count * 2)).Take(faker.Random.Int(1, 2)).ToList();
-                    var totalEmployee = _officeworkers.Count() + _actors.Count();
-                    var duration = new Duration(faker.Date.Recent(faker.Random.Byte(3, 10)), faker.Date.Soon(faker.Random.Byte(3, 10)));
+                    int totalEmployee = _officeworkers.Count() + _actors.Count();
+                    Duration duration = new Duration(faker.Date.Recent(faker.Random.Byte(3, 10)), faker.Date.Soon(faker.Random.Byte(3, 10)));
 
                     Project project = new()
                     {
@@ -73,7 +73,6 @@ namespace CBU2SINIFPROJE.WPFUI
                 }
             }
         }
-
         private void SeedOfficeWorker()
         {
             for (int i = 0; i < 45; i++)
@@ -155,15 +154,15 @@ namespace CBU2SINIFPROJE.WPFUI
         }
         private void SeedVocations(Manager manager)
         {
-            var freeActors = actorService.GetAll().Where(x => x.Projects.IsNull()).Take(3).ToList();
-            var freeOfficeWorkers = officeWorkerService.GetAll().Where(x => x.Projects.IsNull()).Take(4).ToList();
+            List<Actor> freeActors = actorService.GetAll().Where(x => x.Projects.IsNull()).Take(3).ToList();
+            List<OfficeWorker> freeOfficeWorkers = officeWorkerService.GetAll().Where(x => x.Projects.IsNull()).Take(4).ToList();
             freeActors.ForEach(x=>VocationEmployee(x,manager));
             freeOfficeWorkers.ForEach(x=>VocationEmployee(x,manager));
         }
         private void VocationEmployee(Employee employee,Manager manager)
         {
             Bogus.Faker faker = new Bogus.Faker();
-            var duration = new Duration(faker.Date.Recent(faker.Random.Byte(3, 10)), faker.Date.Soon(faker.Random.Byte(3, 10)));
+            Duration duration = new Duration(faker.Date.Recent(faker.Random.Byte(3, 10)), faker.Date.Soon(faker.Random.Byte(3, 10)));
             Vacation vacation = new()
             {
                 Manager= manager,

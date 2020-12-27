@@ -1,22 +1,14 @@
-﻿using CBU2SINIFPROJE.BLL.ExtensionMethods;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+
+using CBU2SINIFPROJE.BLL.ExtensionMethods;
 using CBU2SINIFPROJE.BLL.Interfaces;
 using CBU2SINIFPROJE.BLL.Status;
 using CBU2SINIFPROJE.Entities.Concrete;
 using CBU2SINIFPROJE.WPFUI.Models;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CBU2SINIFPROJE.WPFUI.Windows
 {
@@ -61,10 +53,10 @@ namespace CBU2SINIFPROJE.WPFUI.Windows
         {
             if (dp_baslangic.SelectedDate.HasValue && dp_bitis.SelectedDate.HasValue)
             {
-                var duration = GetProjectDuration();
+                Entities.Concrete.Duration duration = GetProjectDuration();
                 if (!duration.IsNull())
                 {
-                    var model = DataContext.Cast<ProjectAddViewModel>();
+                    ProjectAddViewModel model = DataContext.Cast<ProjectAddViewModel>();
                     model.Actors.Clear();
                     model.OfficeWorkers.Clear();
                     model.Actors.AddRange(actorService.GetAllFreeActor(duration).ToList());
@@ -98,14 +90,14 @@ namespace CBU2SINIFPROJE.WPFUI.Windows
 
         private void Btn_Submit_Click(object sender, RoutedEventArgs e)
         {
-            var model = DataContext.Cast<ProjectAddViewModel>();
+            ProjectAddViewModel model = DataContext.Cast<ProjectAddViewModel>();
             if (!model.IsNull())
             {
                 model.Project.Duration = GetProjectDuration();
                 if (model.Project.Duration.IsNull())
                     return;
-                var actors = dg_actors.SelectedItems.Cast<Actor>().ToList();
-                var officeWorkers = dg_ofw.SelectedItems.Cast<OfficeWorker>().ToList();
+                List<Actor> actors = dg_actors.SelectedItems.Cast<Actor>().ToList();
+                List<OfficeWorker> officeWorkers = dg_ofw.SelectedItems.Cast<OfficeWorker>().ToList();
                 if (EditMode)
                     projectService.UpdateProject(actors, officeWorkers, model.Company, project);
                 else
@@ -113,7 +105,7 @@ namespace CBU2SINIFPROJE.WPFUI.Windows
                     int? totalProjectsCount = model.Company.Projects?.Count+1;
                     if (totalProjectsCount.HasValue && totalProjectsCount.Value>3)
                     {
-                        var discountPrice = project.Cost * 0.8;
+                        double discountPrice = project.Cost * 0.8;
                         MessageBox.Show($"{model.Company.Name} firması ile {totalProjectsCount}. Projeniz olduğundan dolayı %20'lik indirim uygulanarak\n{model.Project.Cost} -> {discountPrice}\nOlarak Hesaplanmiştır");
                         project.Cost = discountPrice;
                     }
@@ -121,7 +113,7 @@ namespace CBU2SINIFPROJE.WPFUI.Windows
                 }
                    
                 MessageBox.Show("Kaydedildi");
-                this.Close();
+                Close();
             }
         }
 
@@ -137,14 +129,14 @@ namespace CBU2SINIFPROJE.WPFUI.Windows
                 tb_field.Visibility = Visibility.Collapsed;
             ProjectAddViewModel model = new();
             if (project.IsNull())
-                this.project = new();
+                project = new();
 
             model.Project = project;
             model.Companies = genericCompanyService.GetAll();
             model.Actors = new();
             model.OfficeWorkers = new();
             model.Company = project.Company;
-            this.DataContext = model;
+            DataContext = model;
 
             if (project.Duration.IsNull())
             {

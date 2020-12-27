@@ -8,7 +8,7 @@ namespace CBU2SINIFPROJE.BLL.ExtensionMethods
     {
         public static int DurationCalc(this Duration duration)
         {
-            var total = (duration.EndDate - duration.StartDate).TotalDays;
+            double total = (duration.EndDate - duration.StartDate).TotalDays;
             return Convert.ToInt32(total);
         }
     }

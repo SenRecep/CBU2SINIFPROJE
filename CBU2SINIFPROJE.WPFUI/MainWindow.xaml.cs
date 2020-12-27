@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-using CBU2SINIFPROJE.BLL.ExtensionMethods;
 using CBU2SINIFPROJE.BLL.Status;
 using CBU2SINIFPROJE.WPFUI.Pages;
 using CBU2SINIFPROJE.WPFUI.Windows;
@@ -35,10 +34,10 @@ namespace CBU2SINIFPROJE.WPFUI
         private void Btn_Logout_Click(object sender, RoutedEventArgs e)
         {
             SessionContext.LoginManager = null;
-            Window window = serviceProvider.GetService<LoginWindow>();
+            LoginWindow window = serviceProvider.GetService<LoginWindow>();
             isLogout = true;
             window.ShowDialog();
-            this.Close();
+            Close();
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -49,6 +48,7 @@ namespace CBU2SINIFPROJE.WPFUI
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            Title = $"Hoşgeldin {SessionContext.LoginManager.FullName} - {SessionContext.LoginManager.Role}";
             foreach (Button navigatorButton in navigatorButtons.Children.OfType<Button>())
                 navigatorButton.Click += (s, e) =>
                 {

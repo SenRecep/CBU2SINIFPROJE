@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 using CBU2SINIFPROJE.DAL.Interfaces;
 using CBU2SINIFPROJE.Entities.Concrete;
@@ -22,9 +18,9 @@ namespace CBU2SINIFPROJE.DAL.Concrete.MemoryDatabase.Repositories
         public void Delete(Company company)
         {
             if (company.Projects.Any())
-                foreach (var project in company.Projects)
+                foreach (Project project in company.Projects)
                 {
-                    foreach (var employee in project.Employees)
+                    foreach (Employee employee in project.Employees)
                     {
                         if (employee is Actor actor)
                             actor.Projects.Remove(project);

@@ -1,25 +1,19 @@
-﻿using CBU2SINIFPROJE.BLL.ExtensionMethods;
-using CBU2SINIFPROJE.BLL.Interfaces;
-using CBU2SINIFPROJE.Entities.Concrete;
-using CBU2SINIFPROJE.WPFUI.Windows;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Extensions.DependencyInjection;
-using CBU2SINIFPROJE.ViewModels.OfficeWorker;
+
+using CBU2SINIFPROJE.BLL.ExtensionMethods;
+using CBU2SINIFPROJE.BLL.Interfaces;
 using CBU2SINIFPROJE.BLL.Status;
 using CBU2SINIFPROJE.Core.Enums;
+using CBU2SINIFPROJE.Entities.Concrete;
+using CBU2SINIFPROJE.ViewModels.OfficeWorker;
+using CBU2SINIFPROJE.WPFUI.Windows;
+
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CBU2SINIFPROJE.WPFUI.Pages
 {
@@ -80,7 +74,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
             if (SessionContext.LoginManager.Role == Role.MudurYardimcisi)
                     Edit_Employee.Visibility =Delete_Employee.Visibility = Visibility.Collapsed;
             dg_Employee.ItemsSource = null;
-            var entities = genericOfwService.GetAll();
+            List<OfficeWorker> entities = genericOfwService.GetAll();
             entities.ForEach(item => {
                 item.State = ofwService.IsFree(item);
             });
@@ -92,7 +86,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
             Employee selected = dg_Employee.SelectedItem?.Cast<Employee>();
             if (!selected.IsNull())
             {
-                var window = serviceProvider.GetService<IzinAtaWindow>();
+                IzinAtaWindow window = serviceProvider.GetService<IzinAtaWindow>();
                 window.Init(selected);
                 window.ShowDialog();
                 NavigationService.Refresh();

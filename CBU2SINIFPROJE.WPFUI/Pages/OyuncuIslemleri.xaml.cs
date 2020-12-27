@@ -61,7 +61,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
             Actor selectedActor = dg_Actor.SelectedItem?.Cast<Actor>();
             if (!selectedActor.IsNull())
             {
-                var window = serviceProvider.GetService<IzinAtaWindow>();
+                IzinAtaWindow window = serviceProvider.GetService<IzinAtaWindow>();
                 window.Init(selectedActor);
                 window.ShowDialog();
                 NavigationService.Refresh();
@@ -123,7 +123,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
             if (SessionContext.LoginManager.Role == Role.MudurYardimcisi)
                 dtc_field.Visibility = Edit_Actor.Visibility = Delete_Actor.Visibility = Visibility.Collapsed;
             dg_Actor.ItemsSource = null;
-            var entities = genericActorService.GetAll();
+            System.Collections.Generic.List<Actor> entities = genericActorService.GetAll();
             entities.ForEach(item =>
             {
                 item.State = actorService.IsFree(item);

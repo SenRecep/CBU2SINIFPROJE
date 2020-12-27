@@ -1,23 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 using CBU2SINIFPROJE.BLL.ExtensionMethods;
-using CBU2SINIFPROJE.BLL.Interfaces;
 using CBU2SINIFPROJE.BLL.Status;
 using CBU2SINIFPROJE.Entities.Concrete;
-
-using Microsoft.Extensions.DependencyInjection;
 
 namespace CBU2SINIFPROJE.WPFUI.Windows
 {
@@ -73,7 +61,7 @@ namespace CBU2SINIFPROJE.WPFUI.Windows
 
         private void IzinIptal_Click(object sender, RoutedEventArgs e)
         {
-            var model = dg_izinler.SelectedItem.Cast<Vacation>();
+            Vacation model = dg_izinler.SelectedItem.Cast<Vacation>();
             if (!model.IsNull())
             {
                 if (model.Duration.EndDate<DateTime.Now)

@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
 
-using CBU2SINIFPROJE.Core.Entities.Concrete;
 using CBU2SINIFPROJE.Core.Entities.Interfaces;
 
 namespace CBU2SINIFPROJE.Core.ExtensionMethods

@@ -1,24 +1,14 @@
-﻿using CBU2SINIFPROJE.BLL.ExtensionMethods;
+﻿using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+
+using CBU2SINIFPROJE.BLL.ExtensionMethods;
 using CBU2SINIFPROJE.BLL.Interfaces;
 using CBU2SINIFPROJE.BLL.Status;
 using CBU2SINIFPROJE.Core.Enums;
 using CBU2SINIFPROJE.Entities.Concrete;
 using CBU2SINIFPROJE.WPFUI.Windows;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 
 namespace CBU2SINIFPROJE.WPFUI.Pages
@@ -41,7 +31,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
 
         private void InitEvents()
         {
-            this.Loaded += ProjeIslemleri_Loaded;
+            Loaded += ProjeIslemleri_Loaded;
             ListCalisanlar.Click += ListCaslisanlar_Click;
             Delete_Project.Click += Delete_Project_Click;
             Btn_projectAdd.Click += Btn_projectAdd_Click;
@@ -50,7 +40,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
 
         private void Edit_Project_Click(object sender, RoutedEventArgs e)
         {
-            var model = dg_Project.SelectedItem.Cast<Project>();
+            Project model = dg_Project.SelectedItem.Cast<Project>();
             if (!model.IsNull())
             {
                 Window employees = new ListEmployeeWindow(model);
@@ -61,12 +51,12 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
                 employees.Left = 0;
                 window.Left = employees.ActualWidth+20;
                 App.Current.MainWindow.IsEnabled = false;
-                this.IsEnabled = false;
+                IsEnabled = false;
                 window.Closed += (s, ev) =>
                 {
                     employees.Close();
                     dg_Project.Items.Refresh();
-                    this.IsEnabled = true;
+                    IsEnabled = true;
                 };
             }
 
@@ -92,7 +82,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
 
         private void ListCaslisanlar_Click(object sender, RoutedEventArgs e)
         {
-            var model = dg_Project.SelectedItem.Cast<Project>();
+            Project model = dg_Project.SelectedItem.Cast<Project>();
             if (!model.IsNull())
             {
                 Window employees = new ListEmployeeWindow(model);

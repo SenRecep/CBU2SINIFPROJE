@@ -19,16 +19,12 @@ namespace CBU2SINIFPROJE.BLL.Containers.MicrosoftIOC
             services.AddScoped(typeof(IGenericRepository<>), typeof(MDGenericRepository<>));
 
             services.AddScoped<IActorService, ActorManager>();
-            services.AddScoped<IManagerService, ManagerManager>();
             services.AddScoped<IOfficeWorkerService, OfficeWorkerManager>();
             services.AddScoped<ICompanyService, CompanyManager>();
             services.AddScoped<IProjectService, ProjectManager>();
             services.AddScoped<IAuthService, AuthManager>();
             services.AddScoped<IAccountingService, AccountingManager>();
 
-            services.AddScoped<IActorDal, MDActorDal>();
-            services.AddScoped<IManagerDal, MDManagerDal>();
-            services.AddScoped<IOfficeWorkerDal, MDOfficeWorkerDal>();
             services.AddScoped<ICompanyDal, MDCompanyDal>();
 
         }

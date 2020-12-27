@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 using CBU2SINIFPROJE.BLL.ExtensionMethods;
 using CBU2SINIFPROJE.BLL.Interfaces;
@@ -58,7 +48,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
 
         private void Btn_companyAdd_Click(object sender, RoutedEventArgs e)
         {
-            var window = serviceProvider.GetService<CompanyAddWindow>();
+            CompanyAddWindow window = serviceProvider.GetService<CompanyAddWindow>();
             window.ShowDialog();
             dg_Company.Items.Refresh();
         }
@@ -74,7 +64,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
                     Id=company.Id,
                     Name=company.Name
                 };
-                var window = serviceProvider.GetService<CompanyAddWindow>();
+                CompanyAddWindow window = serviceProvider.GetService<CompanyAddWindow>();
                 window.EditMode = true;
                 window.DataContext = model;
                 window.ShowDialog();
@@ -88,7 +78,7 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
             Company company = dg_Company.SelectedItem.Cast<Company>();
             if (!company.IsNull())
             {
-                var messageBoxResult = MessageBox.Show($"{company.Name} adlı firmayı silmek istediğinizden emin misiniz","Uyarı",MessageBoxButton.YesNo,MessageBoxImage.Warning);
+                MessageBoxResult messageBoxResult = MessageBox.Show($"{company.Name} adlı firmayı silmek istediğinizden emin misiniz","Uyarı",MessageBoxButton.YesNo,MessageBoxImage.Warning);
                 if (messageBoxResult==MessageBoxResult.Yes)
                 {
                     companyService.Delete(company);

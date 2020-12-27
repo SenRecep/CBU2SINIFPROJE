@@ -1,12 +1,12 @@
 ﻿using System;
-
-using CBU2SINIFPROJE.Core.Enums;
-using CBU2SINIFPROJE.BLL.Interfaces;
-using CBU2SINIFPROJE.Entities.Concrete;
-using CBU2SINIFPROJE.BLL.ExtensionMethods;
 using System.Collections.Generic;
-using CBU2SINIFPROJE.DAL.Interfaces;
 using System.Linq;
+
+using CBU2SINIFPROJE.BLL.ExtensionMethods;
+using CBU2SINIFPROJE.BLL.Interfaces;
+using CBU2SINIFPROJE.Core.Enums;
+using CBU2SINIFPROJE.DAL.Interfaces;
+using CBU2SINIFPROJE.Entities.Concrete;
 
 namespace CBU2SINIFPROJE.BLL.Concrete
 {
@@ -21,16 +21,16 @@ namespace CBU2SINIFPROJE.BLL.Concrete
 
         public IEnumerable<OfficeWorker> GetAllFreeOfficeWorker(Duration duration)
         {
-            var all = genericRepository.GetAll();
-            foreach (var item in all)
+            List<OfficeWorker> all = genericRepository.GetAll();
+            foreach (OfficeWorker item in all)
                 if (IsFree(item, duration) == EmployeeState.Bosta)
                     yield return item;
         }
 
         public IEnumerable<OfficeWorker> GetAllFreeOfficeWorker()
         {
-            var all = genericRepository.GetAll();
-            foreach (var item in all)
+            List<OfficeWorker> all = genericRepository.GetAll();
+            foreach (OfficeWorker item in all)
                 if (IsFree(item) == EmployeeState.Bosta)
                     yield return item;
         }
@@ -38,10 +38,10 @@ namespace CBU2SINIFPROJE.BLL.Concrete
         public List<OfficeWorker> GetMonthlyOfficeWorkers(List<Project> projects)
         {
             List<OfficeWorker> result = new List<OfficeWorker>();
-            var officeWorkers = genericRepository.GetAll();
-            foreach (var officeWorker in officeWorkers)
+            List<OfficeWorker> officeWorkers = genericRepository.GetAll();
+            foreach (OfficeWorker officeWorker in officeWorkers)
                 if (!officeWorker.Projects.IsNull())
-                    foreach (var project in officeWorker.Projects)
+                    foreach (Project project in officeWorker.Projects)
                     if (projects.Contains(project))
                     {
                         result.Add(officeWorker);
@@ -53,11 +53,11 @@ namespace CBU2SINIFPROJE.BLL.Concrete
         public EmployeeState IsFree(OfficeWorker officeWorker)
         {
             if (!officeWorker.Vacations.IsNull())
-                foreach (var item in officeWorker.Vacations)
+                foreach (Vacation item in officeWorker.Vacations)
                     if (item.Duration.StartDate < DateTime.Now && item.Duration.EndDate > DateTime.Now)
                         return EmployeeState.Izinde;
             if (!officeWorker.Projects.IsNull())
-                foreach (var item in officeWorker.Projects)
+                foreach (Project item in officeWorker.Projects)
                     if (item.Duration.StartDate < DateTime.Now && item.Duration.EndDate > DateTime.Now)
                         return EmployeeState.Calisiyor;
             return EmployeeState.Bosta;
@@ -66,11 +66,11 @@ namespace CBU2SINIFPROJE.BLL.Concrete
         public EmployeeState IsFree(OfficeWorker officeWorker, Duration duration)
         {
             if (!officeWorker.Vacations.IsNull())
-                foreach (var item in officeWorker.Vacations)
+                foreach (Vacation item in officeWorker.Vacations)
                     if (item.Duration.StartDate <= duration.StartDate && item.Duration.EndDate >= duration.EndDate)
                         return EmployeeState.Izinde;
             if (!officeWorker.Projects.IsNull())
-                foreach (var item in officeWorker.Projects)
+                foreach (Project item in officeWorker.Projects)
                     if (item.Duration.StartDate <= duration.StartDate && item.Duration.EndDate >= duration.EndDate)
                         return EmployeeState.Calisiyor;
             return EmployeeState.Bosta;

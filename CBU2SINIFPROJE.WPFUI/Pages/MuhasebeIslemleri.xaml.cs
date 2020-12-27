@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 using CBU2SINIFPROJE.BLL.ExtensionMethods;
 using CBU2SINIFPROJE.BLL.Interfaces;
@@ -36,16 +26,16 @@ namespace CBU2SINIFPROJE.WPFUI.Pages
         {
             lbl_title.Content = $"{DateTime.Now.Month}.Ay Gelir Gider Raporu";
 
-            var revenue = accountingService.TotalCost();
+            double revenue = accountingService.TotalCost();
             totalProjectRevenue.Text = $"{revenue.ToString("c")}";
 
-            var payments = accountingService.TotalWages();
+            int payments = accountingService.TotalWages();
             totalEmployeePayments.Text = $"{payments.ToString("c")}";
 
-            var fixedExpenses = FixedExpenses.Text.ToInt();
+            int fixedExpenses = FixedExpenses.Text.ToInt();
             FixedExpenses.Text= $"{fixedExpenses.ToString("c")}";
 
-            var result = revenue - payments - fixedExpenses;
+            double result = revenue - payments - fixedExpenses;
 
             net.Text = $"{result.ToString("c")}";
             if (result<0)

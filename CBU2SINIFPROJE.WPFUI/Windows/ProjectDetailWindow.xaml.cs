@@ -1,16 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 using CBU2SINIFPROJE.Entities.Concrete;
 
@@ -40,7 +30,7 @@ namespace CBU2SINIFPROJE.WPFUI.Windows
                 projects = officeWorker.Projects;
             dg_projects.ItemsSource = projects;
 
-            foreach (var item in projects)
+            foreach (Project item in projects)
                 if (item.Duration.StartDate <= DateTime.Now && item.Duration.EndDate >= DateTime.Now)
                 {
                     lastProject = item;

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using CBU2SINIFPROJE.BLL.ExtensionMethods;
 using CBU2SINIFPROJE.BLL.Interfaces;
@@ -31,12 +28,12 @@ namespace CBU2SINIFPROJE.BLL.Concrete
         public int TotalWages()
         {
             int total = 0;
-            var projects = projectService.GetMonthlyProjects();
-            var managers = managerService.GetAll();
-            var employees = new List<Employee>();
+            List<Project> projects = projectService.GetMonthlyProjects();
+            List<Manager> managers = managerService.GetAll();
+            List<Employee> employees = new List<Employee>();
             employees.AddRange(actorService.GetMonthlyActors(projects));
             employees.AddRange(officeWorkerService.GetMonthlyOfficeWorkers(projects));
-            foreach (var employee in employees)
+            foreach (Employee employee in employees)
             {
                 int totalDay = 0;
                 List<Project> employeeProjects = null;
@@ -44,12 +41,12 @@ namespace CBU2SINIFPROJE.BLL.Concrete
                     employeeProjects = actor.Projects;
                 if (employee is OfficeWorker officeWorker)
                     employeeProjects = officeWorker.Projects;
-                foreach (var project in employeeProjects)
+                foreach (Project project in employeeProjects)
                     totalDay += project.Duration.DurationCalc();
-                var totalSalary = (employee.Salary / 30) * totalDay;
+                int totalSalary = (employee.Salary / 30) * totalDay;
                 total += totalSalary;
             }
-            foreach (var manager in managers)
+            foreach (Manager manager in managers)
                 total += manager.Salary;
             return total;
 

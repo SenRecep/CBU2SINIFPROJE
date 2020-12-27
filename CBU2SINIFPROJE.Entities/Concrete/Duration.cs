@@ -1,6 +1,6 @@
-﻿using CBU2SINIFPROJE.Entities.Interfaces;
+﻿using System;
 
-using System;
+using CBU2SINIFPROJE.Entities.Interfaces;
 
 namespace CBU2SINIFPROJE.Entities.Concrete
 {

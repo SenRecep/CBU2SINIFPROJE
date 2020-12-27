@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using CBU2SINIFPROJE.Core.Entities.Interfaces;
 using CBU2SINIFPROJE.Core.ExtensionMethods;
 using CBU2SINIFPROJE.DAL.Concrete.MemoryDatabase.Contexts;
@@ -32,7 +33,7 @@ namespace CBU2SINIFPROJE.DAL.Concrete.MemoryDatabase.Repositories
 
         public void Delete(int id)
         {
-            var found = data.FirstOrDefault(x=>x.Id==id);
+            TEntity found = data.FirstOrDefault(x=>x.Id==id);
             if (found!=null)
                 data.Remove(found);
         }
@@ -49,7 +50,7 @@ namespace CBU2SINIFPROJE.DAL.Concrete.MemoryDatabase.Repositories
 
         public void Update(TEntity entity)
         {
-            var found = data.FirstOrDefault(x=>x.Id==entity.Id);
+            TEntity found = data.FirstOrDefault(x=>x.Id==entity.Id);
             found?.DataTransfer(entity);
         }
     }

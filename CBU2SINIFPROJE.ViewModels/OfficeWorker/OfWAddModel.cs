@@ -1,11 +1,6 @@
 ﻿using CBU2SINIFPROJE.Core.Enums;
 using CBU2SINIFPROJE.Core.ViewModels;
 using CBU2SINIFPROJE.ViewModels.Adress;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CBU2SINIFPROJE.ViewModels.OfficeWorker
 {

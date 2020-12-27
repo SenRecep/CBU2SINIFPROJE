@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 using CBU2SINIFPROJE.BLL.ExtensionMethods;
 using CBU2SINIFPROJE.BLL.Interfaces;
@@ -38,7 +27,7 @@ namespace CBU2SINIFPROJE.WPFUI.Windows
         }
         private void Btn_Submit_Click(object sender, RoutedEventArgs e)
         {
-            var model = this.DataContext.Cast<ActorAddModel>();
+            ActorAddModel model = DataContext.Cast<ActorAddModel>();
             if (!model.IsNull())
             {
                 model.Field = cb_Fields.SelectedItem.Cast<ComboBoxItem>().Tag.Cast<string>().ToInt().Cast<Field>();
@@ -57,7 +46,7 @@ namespace CBU2SINIFPROJE.WPFUI.Windows
                     actorService.Add(entity);
                 IsSaved = true;
                 MessageBox.Show("Kaydedildi");
-                this.Close();
+                Close();
             }
         }
     }
